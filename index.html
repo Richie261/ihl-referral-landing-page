@@ -1,0 +1,1536 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>IHL Referrer Landing Page V1</title>
+    <style>
+      :root {
+        --bg: #f6f7f4;
+        --paper: #ffffff;
+        --ink: #141816;
+        --muted: #66736b;
+        --quiet: #8b948e;
+        --line: #dfe5df;
+        --line-strong: #cbd5cd;
+        --forest: #2d4e37;
+        --forest-2: #3d6b4a;
+        --sage: #edf4ee;
+        --sage-2: #dcebe0;
+        --gold: #c59a45;
+        --blue: #285f8f;
+        --shadow: 0 24px 70px rgba(22, 30, 25, 0.11);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family:
+          -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
+          Inter, "Segoe UI", sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .site-shell {
+        min-height: 100vh;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        border-bottom: 1px solid rgba(223, 229, 223, 0.9);
+        background: rgba(246, 247, 244, 0.88);
+        backdrop-filter: blur(18px);
+      }
+
+      .topbar-inner {
+        max-width: 1180px;
+        height: 72px;
+        margin: 0 auto;
+        padding: 0 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-width: 0;
+        text-decoration: none;
+      }
+
+      .brand-mark {
+        width: 42px;
+        height: 42px;
+        display: grid;
+        place-items: center;
+        border: 1px solid #b8d8ca;
+        border-radius: 8px;
+        background: linear-gradient(135deg, #e8f5ef, #ffffff 60%, #eaf2ff);
+        color: #123f2b;
+        font-size: 14px;
+        font-weight: 850;
+      }
+
+      .brand strong {
+        display: block;
+        font-size: 15px;
+        letter-spacing: -0.01em;
+      }
+
+      .brand span {
+        display: block;
+        margin-top: 2px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        color: #46534b;
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .nav a {
+        text-decoration: none;
+      }
+
+      .nav-cta {
+        height: 38px;
+        display: inline-flex;
+        align-items: center;
+        padding: 0 15px;
+        border-radius: 8px;
+        background: var(--forest);
+        color: #fff;
+      }
+
+      main {
+        overflow: hidden;
+      }
+
+      .section {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 76px 24px;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 430px;
+        gap: 44px;
+        align-items: center;
+        padding-top: 88px;
+        padding-bottom: 58px;
+      }
+
+      .eyebrow {
+        color: var(--forest);
+        font-size: 12px;
+        font-weight: 850;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+
+      h1 {
+        margin-top: 16px;
+        max-width: 760px;
+        font-size: clamp(48px, 7vw, 78px);
+        line-height: 0.96;
+        letter-spacing: -0.055em;
+      }
+
+      .hero-copy {
+        margin-top: 24px;
+        max-width: 680px;
+        color: #4f5c55;
+        font-size: 20px;
+        line-height: 1.46;
+        letter-spacing: -0.012em;
+      }
+
+      .hero-actions {
+        margin-top: 34px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .button {
+        height: 48px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        padding: 0 18px;
+        border: 1px solid var(--line-strong);
+        background: #fff;
+        color: var(--ink);
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 800;
+      }
+
+      .button.primary {
+        border-color: var(--forest);
+        background: var(--forest);
+        color: #fff;
+      }
+
+      .pathway-card {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.86);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+
+      .pathway-card-header {
+        padding: 22px;
+        border-bottom: 1px solid var(--line);
+        background: #fff;
+      }
+
+      .pathway-card-header h2 {
+        font-size: 22px;
+        letter-spacing: -0.025em;
+      }
+
+      .pathway-card-header p {
+        margin-top: 8px;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.45;
+      }
+
+      .healthlink-box {
+        padding: 22px;
+        background: var(--forest);
+        color: #fff;
+      }
+
+      .healthlink-box span {
+        display: block;
+        color: rgba(255, 255, 255, 0.68);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .edi {
+        margin-top: 10px;
+        font-size: 42px;
+        line-height: 1;
+        letter-spacing: 0.02em;
+        font-weight: 850;
+      }
+
+      .healthlink-box p {
+        margin-top: 14px;
+        color: rgba(255, 255, 255, 0.82);
+        font-size: 14px;
+        line-height: 1.45;
+      }
+
+      .pathways {
+        display: grid;
+        gap: 1px;
+        background: var(--line);
+      }
+
+      .pathway-row {
+        display: grid;
+        grid-template-columns: 46px 1fr;
+        gap: 14px;
+        padding: 18px 20px;
+        background: #fff;
+      }
+
+      .pathway-number {
+        width: 38px;
+        height: 38px;
+        display: grid;
+        place-items: center;
+        border-radius: 8px;
+        background: var(--sage);
+        color: var(--forest);
+        font-size: 14px;
+        font-weight: 850;
+      }
+
+      .pathway-row h3 {
+        font-size: 16px;
+        letter-spacing: -0.01em;
+      }
+
+      .pathway-row p {
+        margin-top: 5px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.4;
+      }
+
+      .trust-row {
+        margin-top: 34px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        overflow: hidden;
+        background: var(--line);
+      }
+
+      .trust-item {
+        min-height: 118px;
+        padding: 20px;
+        background: #fff;
+      }
+
+      .trust-item strong {
+        display: block;
+        font-size: 15px;
+      }
+
+      .trust-item span {
+        display: block;
+        margin-top: 8px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.45;
+      }
+
+      .band {
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        background: #fff;
+      }
+
+      .section-heading {
+        max-width: 760px;
+      }
+
+      .section-heading h2 {
+        margin-top: 12px;
+        font-size: clamp(34px, 4vw, 52px);
+        line-height: 1;
+        letter-spacing: -0.045em;
+      }
+
+      .section-heading p {
+        margin-top: 16px;
+        color: var(--muted);
+        font-size: 18px;
+        line-height: 1.46;
+      }
+
+      .next-grid {
+        margin-top: 36px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px;
+      }
+
+      .next-card {
+        min-height: 196px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--paper);
+        padding: 22px;
+      }
+
+      .next-card b {
+        display: block;
+        color: var(--forest);
+        font-size: 12px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .next-card h3 {
+        margin-top: 18px;
+        font-size: 20px;
+        line-height: 1.12;
+        letter-spacing: -0.02em;
+      }
+
+      .next-card p {
+        margin-top: 10px;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.45;
+      }
+
+      .service-menu {
+        margin-top: 36px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+      }
+
+      .service-card {
+        min-height: 178px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+        padding: 22px;
+      }
+
+      .service-card h3 {
+        font-size: 18px;
+        letter-spacing: -0.02em;
+      }
+
+      .service-card p {
+        margin-top: 10px;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.46;
+      }
+
+      .referrer-guide {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 320px;
+        gap: 28px;
+        align-items: center;
+        padding: 38px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--forest);
+        color: #fff;
+      }
+
+      .referrer-guide h2 {
+        font-size: 34px;
+        line-height: 1;
+        letter-spacing: -0.035em;
+      }
+
+      .referrer-guide p {
+        margin-top: 12px;
+        color: rgba(255, 255, 255, 0.78);
+        font-size: 16px;
+        line-height: 1.48;
+      }
+
+      .guide-panel {
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.08);
+        padding: 18px;
+      }
+
+      .guide-panel span {
+        display: block;
+        color: rgba(255, 255, 255, 0.62);
+        font-size: 11px;
+        font-weight: 850;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .guide-panel strong {
+        display: block;
+        margin-top: 10px;
+        font-size: 22px;
+        line-height: 1.1;
+      }
+
+      .guide-panel .button {
+        width: 100%;
+        margin-top: 18px;
+        border-color: #fff;
+        background: #fff;
+        color: var(--forest);
+      }
+
+      .support-strip {
+        border-top: 1px solid var(--line);
+        background: #fff;
+      }
+
+      .support-inner {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 28px 24px;
+        display: grid;
+        grid-template-columns: 1fr auto auto;
+        gap: 16px;
+        align-items: center;
+      }
+
+      .support-inner strong {
+        display: block;
+        font-size: 17px;
+      }
+
+      .support-inner span {
+        display: block;
+        margin-top: 4px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .contact-pill {
+        min-height: 42px;
+        display: inline-flex;
+        align-items: center;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 0 14px;
+        color: #334039;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 800;
+      }
+
+      footer {
+        border-top: 1px solid var(--line);
+        padding: 34px 24px;
+        color: var(--muted);
+        text-align: center;
+        font-size: 13px;
+      }
+
+      @media (max-width: 880px) {
+        .nav a:not(.nav-cta) {
+          display: none;
+        }
+
+        .hero,
+        .referrer-guide,
+        .support-inner {
+          grid-template-columns: 1fr;
+        }
+
+        .hero {
+          padding-top: 58px;
+        }
+
+        .trust-row,
+        .next-grid,
+        .service-menu {
+          grid-template-columns: 1fr;
+        }
+
+        .section {
+          padding: 56px 20px;
+        }
+
+        h1 {
+          font-size: 52px;
+        }
+      }
+
+      /* Referrer pack alignment pass: tighter, editorial, hairline-led. */
+      :root {
+        --bg: #f9f9f9;
+        --paper: #ffffff;
+        --ink: #111111;
+        --muted: #444444;
+        --quiet: #888888;
+        --line: #e5e5e5;
+        --line-strong: #d0d0d0;
+        --forest: #2d4e37;
+        --forest-2: #3d6b4a;
+        --sage: #f0f5f1;
+        --sage-2: #e2ede4;
+        --gold: #f5d86a;
+        --shadow: none;
+      }
+
+      body,
+      .site-shell,
+      .band {
+        background: var(--bg);
+      }
+
+      .topbar {
+        background: rgba(249, 249, 249, 0.96);
+        backdrop-filter: none;
+      }
+
+      .brand-mark {
+        border-radius: 6px;
+        background: #fff;
+      }
+
+      h1 {
+        max-width: 720px;
+        font-size: clamp(46px, 6.4vw, 70px);
+        letter-spacing: -0.045em;
+      }
+
+      .hero-copy,
+      .section-heading p,
+      .next-card p,
+      .service-card p,
+      .pathway-row p,
+      .pathway-card-header p,
+      .trust-item span {
+        color: var(--mid, var(--muted));
+      }
+
+      .button,
+      .nav-cta,
+      .pathway-card,
+      .trust-row,
+      .pathway-number,
+      .next-card,
+      .service-card,
+      .referrer-guide,
+      .guide-panel,
+      .contact-pill {
+        border-radius: 0;
+      }
+
+      .pathway-card,
+      .next-card,
+      .service-card,
+      .trust-row,
+      .referrer-guide {
+        box-shadow: none;
+      }
+
+      .next-card,
+      .service-card,
+      .pathway-card,
+      .trust-row {
+        border-color: var(--line);
+      }
+
+      .next-card,
+      .service-card {
+        border-top: 2px solid var(--forest);
+      }
+
+      .referrer-guide {
+        background: var(--forest);
+      }
+
+      .pathway-choice {
+        width: 100%;
+        border: 0;
+        border-left: 4px solid transparent;
+        color: inherit;
+        cursor: pointer;
+        font: inherit;
+        text-align: left;
+        transition:
+          border-color 160ms ease,
+          background 160ms ease;
+      }
+
+      .pathway-choice:hover,
+      .pathway-choice.is-active {
+        border-left-color: var(--gold);
+        background: #fbfaf2;
+      }
+
+      .pathway-insight {
+        padding: 20px 22px 22px;
+        border-top: 1px solid var(--line);
+        background: #fff;
+      }
+
+      .pathway-insight span,
+      .result-kicker,
+      .control-label,
+      .progress-label,
+      .match-output span,
+      .review-item span {
+        display: block;
+        color: var(--quiet);
+        font-size: 11px;
+        font-weight: 850;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .pathway-insight h3 {
+        margin-top: 8px;
+        font-size: 20px;
+        letter-spacing: -0.02em;
+      }
+
+      .pathway-insight p {
+        margin-top: 8px;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.45;
+      }
+
+      .finder-band {
+        background: #ffffff;
+      }
+
+      .tool-grid {
+        margin-top: 36px;
+        display: grid;
+        grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.92fr);
+        gap: 18px;
+        align-items: stretch;
+      }
+
+      .decision-card,
+      .decision-output,
+      .match-output,
+      .review-lane {
+        border: 1px solid var(--line);
+        background: #fff;
+      }
+
+      .decision-card,
+      .decision-output {
+        min-height: 100%;
+        padding: 24px;
+      }
+
+      .control-group + .control-group {
+        margin-top: 22px;
+      }
+
+      .segmented {
+        margin-top: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .segmented button,
+      .match-controls button {
+        min-height: 38px;
+        border: 1px solid var(--line-strong);
+        background: #fff;
+        color: #26322b;
+        padding: 0 12px;
+        font: inherit;
+        font-size: 13px;
+        font-weight: 800;
+        cursor: pointer;
+      }
+
+      .segmented button:hover,
+      .segmented button.is-active,
+      .match-controls button:hover,
+      .match-controls button.is-active {
+        border-color: var(--forest);
+        background: var(--sage);
+        color: var(--forest);
+      }
+
+      .decision-output {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 22px;
+        border-top: 3px solid var(--forest);
+      }
+
+      .decision-output h3 {
+        margin-top: 10px;
+        font-size: 30px;
+        line-height: 1;
+        letter-spacing: -0.035em;
+      }
+
+      .decision-output p {
+        margin-top: 12px;
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.48;
+      }
+
+      .step-list {
+        margin: 18px 0 0;
+        padding-left: 18px;
+        color: #313d35;
+        font-size: 14px;
+        line-height: 1.55;
+      }
+
+      .decision-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .readiness {
+        margin-top: 28px;
+        padding-top: 24px;
+        border-top: 1px solid var(--line);
+      }
+
+      .progress-track {
+        height: 8px;
+        margin-top: 10px;
+        border: 1px solid var(--line);
+        background: #f5f5f5;
+      }
+
+      .progress-fill {
+        width: 20%;
+        height: 100%;
+        background: var(--forest);
+        transition: width 180ms ease;
+      }
+
+      .check-grid {
+        margin-top: 16px;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .check-row {
+        min-height: 52px;
+        display: grid;
+        grid-template-columns: 18px 1fr;
+        gap: 10px;
+        align-items: start;
+        border: 1px solid var(--line);
+        padding: 12px;
+        color: #2d3731;
+        font-size: 13px;
+        font-weight: 750;
+        line-height: 1.25;
+        cursor: pointer;
+      }
+
+      .check-row input {
+        width: 16px;
+        height: 16px;
+        margin: 0;
+        accent-color: var(--forest);
+      }
+
+      .match-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 0.95fr) minmax(320px, 1.05fr);
+        gap: 28px;
+        align-items: start;
+      }
+
+      .match-controls {
+        margin-top: 28px;
+        display: grid;
+        gap: 18px;
+      }
+
+      .match-controls div {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .match-output {
+        padding: 28px;
+        border-top: 3px solid var(--blue);
+      }
+
+      .match-output h3 {
+        margin-top: 10px;
+        font-size: 34px;
+        line-height: 1;
+        letter-spacing: -0.035em;
+      }
+
+      .match-output p {
+        margin-top: 14px;
+        color: var(--muted);
+        font-size: 16px;
+        line-height: 1.5;
+      }
+
+      .chip-row {
+        margin-top: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .chip {
+        border: 1px solid var(--line);
+        background: #f8faf8;
+        padding: 8px 10px;
+        color: #344038;
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .review-lane {
+        display: grid;
+        grid-template-columns: 1fr repeat(3, minmax(150px, 0.5fr));
+        gap: 1px;
+        background: var(--line);
+      }
+
+      .review-intro,
+      .review-item {
+        background: #fff;
+        padding: 20px;
+      }
+
+      .review-intro h2 {
+        font-size: 26px;
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+      }
+
+      .review-intro p,
+      .review-item strong {
+        margin-top: 8px;
+      }
+
+      .review-intro p {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.45;
+      }
+
+      .review-item strong {
+        display: block;
+        font-size: 15px;
+        line-height: 1.25;
+      }
+
+      .review-item span {
+        color: var(--forest);
+      }
+
+      @media (max-width: 880px) {
+        .tool-grid,
+        .match-grid,
+        .review-lane {
+          grid-template-columns: 1fr;
+        }
+
+        .check-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .decision-output h3,
+        .match-output h3 {
+          font-size: 28px;
+        }
+      }
+
+      @media (max-width: 520px) {
+        .topbar-inner {
+          height: 64px;
+          padding: 0 16px;
+          gap: 12px;
+        }
+
+        .brand {
+          gap: 9px;
+        }
+
+        .brand-mark {
+          width: 36px;
+          height: 36px;
+          flex: 0 0 auto;
+        }
+
+        .brand strong {
+          font-size: 13px;
+          line-height: 1.08;
+        }
+
+        .brand span {
+          display: none;
+        }
+
+        .nav-cta {
+          height: 36px;
+          padding: 0 11px;
+          white-space: nowrap;
+          font-size: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="topbar">
+        <div class="topbar-inner">
+          <a class="brand" href="#" aria-label="Institute for Healthy Living">
+            <div class="brand-mark">IHL</div>
+            <div>
+              <strong>Institute for Healthy Living</strong>
+              <span>Clinical psychology · Bondi Junction</span>
+            </div>
+          </a>
+          <nav class="nav" aria-label="Referrer page navigation">
+            <a href="#pathways">Referral options</a>
+            <a href="#finder">Pathway finder</a>
+            <a href="#next">What happens next</a>
+            <a href="#services">Services</a>
+            <a class="nav-cta" href="online-referral-form-v1.html">Online referral</a>
+          </nav>
+        </div>
+      </header>
+
+      <main>
+        <section class="section hero">
+          <div>
+            <div class="eyebrow">For GPs, psychiatrists, paediatricians and healthcare referrers</div>
+            <h1>Refer a patient to IHL.</h1>
+            <p class="hero-copy">
+              A clear referral front door for multidisciplinary psychology and mental health care across children, adolescents, adults, couples and families. HealthLink is preferred; the intake team remains available when a human conversation is needed.
+            </p>
+            <div class="hero-actions">
+              <a class="button primary" href="#finder">Find best pathway</a>
+              <a class="button" href="online-referral-form-v1.html">Use online form</a>
+              <a class="button" href="#referrer-guide">View referrer guide note</a>
+            </div>
+            <div class="trust-row" aria-label="IHL trust signals">
+              <div class="trust-item">
+                <strong>Structured intake</strong>
+                <span>Every referral is reviewed by the intake team before booking.</span>
+              </div>
+              <div class="trust-item">
+                <strong>Thoughtful matching</strong>
+                <span>Clinician fit is based on presentation, complexity, preference and availability.</span>
+              </div>
+              <div class="trust-item">
+                <strong>Clear communication</strong>
+                <span>Referrers receive appropriate acknowledgement and updates with consent.</span>
+              </div>
+              <div class="trust-item">
+                <strong>Premium care model</strong>
+                <span>Evidence-based psychology in a mature multidisciplinary private practice.</span>
+              </div>
+            </div>
+          </div>
+
+          <aside class="pathway-card" id="pathways" aria-label="How to refer">
+            <div class="pathway-card-header">
+              <h2>Preferred secure referral method</h2>
+              <p>For GPs and referrers using clinical software, send referrals directly through HealthLink.</p>
+            </div>
+            <div class="healthlink-box">
+              <span>HealthLink EDI</span>
+              <div class="edi">inshealh</div>
+              <p>Search for Institute for Healthy Living or use EDI: <strong>inshealh</strong>.</p>
+            </div>
+            <div class="pathways">
+              <button class="pathway-row pathway-choice is-active" type="button" data-pathway="healthlink">
+                <div class="pathway-number">1</div>
+                <div>
+                  <h3>HealthLink eReferral</h3>
+                  <p>Best pathway for secure GP and specialist referrals.</p>
+                </div>
+              </button>
+              <button class="pathway-row pathway-choice" type="button" data-pathway="online">
+                <div class="pathway-number">2</div>
+                <div>
+                  <h3>Online referral form</h3>
+                  <p>Use when HealthLink is not available or a direct structured web referral is simpler.</p>
+                </div>
+              </button>
+              <button class="pathway-row pathway-choice" type="button" data-pathway="support">
+                <div class="pathway-number">3</div>
+                <div>
+                  <h3>Phone and email support</h3>
+                  <p>For referral questions, attachments or help choosing the best pathway.</p>
+                </div>
+              </button>
+            </div>
+            <div class="pathway-insight" aria-live="polite">
+              <span id="pathway-insight-label">Selected pathway</span>
+              <h3 id="pathway-insight-title">HealthLink eReferral</h3>
+              <p id="pathway-insight-copy">
+                Prioritise this path for secure clinical referrals from GP and specialist software.
+              </p>
+            </div>
+          </aside>
+        </section>
+
+        <section class="band finder-band" id="finder">
+          <div class="section">
+            <div class="section-heading">
+              <div class="eyebrow">Referral pathway finder</div>
+              <h2>Choose the cleanest referral route before sending.</h2>
+              <p>
+                A simple decision layer for referrers: HealthLink first, online referral when needed, and intake support when a human handoff will prevent confusion.
+              </p>
+            </div>
+
+            <div class="tool-grid">
+              <div class="decision-card">
+                <div class="control-group">
+                  <span class="control-label">Referral access</span>
+                  <div class="segmented" role="group" aria-label="Referral access">
+                    <button class="is-active" type="button" data-finder="access" data-value="healthlink">Has HealthLink</button>
+                    <button type="button" data-finder="access" data-value="no-healthlink">No HealthLink</button>
+                    <button type="button" data-finder="access" data-value="unsure">Not sure</button>
+                  </div>
+                </div>
+
+                <div class="control-group">
+                  <span class="control-label">Referral context</span>
+                  <div class="segmented" role="group" aria-label="Referral context">
+                    <button class="is-active" type="button" data-finder="context" data-value="standard">Standard referral</button>
+                    <button type="button" data-finder="context" data-value="complex">Complex presentation</button>
+                    <button type="button" data-finder="context" data-value="urgent">Needs intake discussion</button>
+                  </div>
+                </div>
+
+                <div class="control-group">
+                  <span class="control-label">Attachments</span>
+                  <div class="segmented" role="group" aria-label="Attachments">
+                    <button class="is-active" type="button" data-finder="attachments" data-value="ready">Referral letter ready</button>
+                    <button type="button" data-finder="attachments" data-value="later">Attachments to follow</button>
+                  </div>
+                </div>
+
+                <div class="readiness">
+                  <span class="progress-label" id="readiness-label">Referral readiness: 1 of 5</span>
+                  <div class="progress-track" aria-hidden="true">
+                    <div class="progress-fill" id="readiness-fill"></div>
+                  </div>
+                  <div class="check-grid">
+                    <label class="check-row">
+                      <input type="checkbox" class="readiness-check" checked />
+                      <span>Patient contact details are current</span>
+                    </label>
+                    <label class="check-row">
+                      <input type="checkbox" class="readiness-check" />
+                      <span>Reason for referral is summarised</span>
+                    </label>
+                    <label class="check-row">
+                      <input type="checkbox" class="readiness-check" />
+                      <span>Risk or urgency is noted where relevant</span>
+                    </label>
+                    <label class="check-row">
+                      <input type="checkbox" class="readiness-check" />
+                      <span>Funding pathway is included</span>
+                    </label>
+                    <label class="check-row">
+                      <input type="checkbox" class="readiness-check" />
+                      <span>Relevant reports or letters are attached</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <aside class="decision-output" aria-live="polite">
+                <div>
+                  <span class="result-kicker">Recommended path</span>
+                  <h3 id="finder-title">HealthLink eReferral</h3>
+                  <p id="finder-copy">
+                    Send the referral through clinical software using IHL’s HealthLink EDI. This keeps the referral secure and easy for intake to reconcile.
+                  </p>
+                  <ol class="step-list" id="finder-steps">
+                    <li>Search Institute for Healthy Living in HealthLink.</li>
+                    <li>Use EDI: inshealh.</li>
+                    <li>Attach the referral letter and relevant reports.</li>
+                  </ol>
+                </div>
+                <div class="decision-actions">
+                  <a class="button primary" id="finder-primary" href="#pathways">Use HealthLink EDI</a>
+                  <a class="button" id="finder-secondary" href="online-referral-form-v1.html">Open online form</a>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </section>
+
+        <section class="band" id="next">
+          <div class="section">
+            <div class="section-heading">
+              <div class="eyebrow">What happens next</div>
+              <h2>Referral intake stays human, structured and fast.</h2>
+              <p>
+                The intake team reviews referral details, checks completeness, considers risk and fit, then helps match the patient to an appropriate clinician or pathway.
+              </p>
+            </div>
+
+            <div class="next-grid">
+              <article class="next-card">
+                <b>01</b>
+                <h3>Referral received</h3>
+                <p>HealthLink, online form, intake email, phone and fax are reconciled into the intake workflow.</p>
+              </article>
+              <article class="next-card">
+                <b>02</b>
+                <h3>Intake review</h3>
+                <p>The team reviews reason for referral, urgency, funding, attachments and missing information.</p>
+              </article>
+              <article class="next-card">
+                <b>03</b>
+                <h3>Clinician matching</h3>
+                <p>Matching considers age, presentation, modality, risk, funding, preference and capacity.</p>
+              </article>
+              <article class="next-card">
+                <b>04</b>
+                <h3>Contact and booking</h3>
+                <p>The patient, guardian or referrer is contacted where appropriate, with booking or next steps confirmed.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="services">
+          <div class="section-heading">
+            <div class="eyebrow">Clinical service menu</div>
+            <h2>Referral pathways across the lifespan.</h2>
+            <p>
+              A simple service map for referrers. The intake team can advise on fit, availability and whether IHL is the right pathway.
+            </p>
+          </div>
+
+          <div class="service-menu">
+            <article class="service-card">
+              <h3>Adults</h3>
+              <p>Anxiety, mood, trauma, adjustment, relationship stress, identity, burnout, complex and comorbid presentations.</p>
+            </article>
+            <article class="service-card">
+              <h3>Children and adolescents</h3>
+              <p>Developmental, emotional, behavioural, family and school-related presentations, with parent and guardian involvement where appropriate.</p>
+            </article>
+            <article class="service-card">
+              <h3>Couples and families</h3>
+              <p>Relationship and family-system work where psychological care benefits from a broader relational frame.</p>
+            </article>
+            <article class="service-card">
+              <h3>Assessment and neuropsychology</h3>
+              <p>Assessment-informed care and referral pathways where cognitive, learning or diagnostic clarification may be relevant.</p>
+            </article>
+            <article class="service-card">
+              <h3>Evidence-based modalities</h3>
+              <p>CBT, DBT, Schema Therapy, EMDR, ACT and other modality-informed approaches matched to presentation and clinician expertise.</p>
+            </article>
+            <article class="service-card">
+              <h3>Funding pathways</h3>
+              <p>Medicare MHTP, private, NDIS, WorkCover/insurance and other pathways can be clarified during intake.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="band" id="matching">
+          <div class="section match-grid">
+            <div>
+              <div class="section-heading">
+                <div class="eyebrow">Clinician matching preview</div>
+                <h2>Show referrers that fit is actively considered.</h2>
+                <p>
+                  Intake considers presentation, age, funding, modality, availability and referrer preference before confirming the next step.
+                </p>
+              </div>
+
+              <div class="match-controls">
+                <div aria-label="Age range">
+                  <button class="is-active" type="button" data-match="age" data-value="adult">Adult</button>
+                  <button type="button" data-match="age" data-value="child">Child</button>
+                  <button type="button" data-match="age" data-value="adolescent">Adolescent</button>
+                  <button type="button" data-match="age" data-value="couple">Couple or family</button>
+                </div>
+                <div aria-label="Presentation">
+                  <button class="is-active" type="button" data-match="presentation" data-value="mood">Mood or anxiety</button>
+                  <button type="button" data-match="presentation" data-value="trauma">Trauma</button>
+                  <button type="button" data-match="presentation" data-value="assessment">Assessment</button>
+                  <button type="button" data-match="presentation" data-value="complex">Complex care</button>
+                </div>
+                <div aria-label="Funding">
+                  <button class="is-active" type="button" data-match="funding" data-value="private">Private</button>
+                  <button type="button" data-match="funding" data-value="mhtp">Medicare MHTP</button>
+                  <button type="button" data-match="funding" data-value="ndis">NDIS</button>
+                  <button type="button" data-match="funding" data-value="insurance">Insurance</button>
+                </div>
+              </div>
+            </div>
+
+            <article class="match-output" aria-live="polite">
+              <span>Matching lens</span>
+              <h3 id="match-title">Adult mood or anxiety referral</h3>
+              <p id="match-copy">
+                Intake prioritises presenting concern, preferred modality, availability, risk level and whether the patient would benefit from a clinician with specific experience in mood, anxiety or adjustment presentations.
+              </p>
+              <div class="chip-row" id="match-chips">
+                <span class="chip">Presentation fit</span>
+                <span class="chip">Modality fit</span>
+                <span class="chip">Availability</span>
+                <span class="chip">Funding pathway</span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" aria-label="Internal launch review">
+          <div class="review-lane">
+            <div class="review-intro">
+              <div class="eyebrow">Sathvika review lane</div>
+              <h2>Launch checks stay visible.</h2>
+              <p>Keep the first release focused on a clear referral front door and a safe intake handoff.</p>
+            </div>
+            <div class="review-item">
+              <span>Pathway order</span>
+              <strong>HealthLink first, web form second, intake support third.</strong>
+            </div>
+            <div class="review-item">
+              <span>Data boundary</span>
+              <strong>No clinical referral detail into campaign CRM.</strong>
+            </div>
+            <div class="review-item">
+              <span>Campaign gate</span>
+              <strong>Do not sequence until HubSpot sync is clean.</strong>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="referrer-guide">
+          <div class="referrer-guide">
+            <div>
+              <div class="eyebrow" style="color: rgba(255,255,255,.68)">Downloadable guide</div>
+              <h2>Give referrers one clean document to keep on hand.</h2>
+              <p>
+                The referrer guide summarises IHL’s practice details, clinical capability, referral pathways and clinician overview for easy sharing inside GP and specialist rooms.
+              </p>
+            </div>
+            <div class="guide-panel">
+              <span>Referrer guide PDF</span>
+              <strong>IHL Clinical Referrer Guide to attach before launch</strong>
+              <a class="button" href="mailto:intake@institute4healthyliving.com">Request guide</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="support-strip">
+          <div class="support-inner">
+            <div>
+              <strong>Need help choosing the referral pathway?</strong>
+              <span>Reception and intake support are available Monday to Friday, 9:00 am to 5:00 pm.</span>
+            </div>
+            <a class="contact-pill" href="mailto:intake@institute4healthyliving.com">intake@institute4healthyliving.com</a>
+            <a class="contact-pill" href="tel:+61289370667">02 8937 0667</a>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        Institute for Healthy Living · Suite 306, 3 Waverley Street, Bondi Junction NSW 2022 · HealthLink EDI: inshealh
+      </footer>
+    </div>
+    <script>
+      const pathwayContent = {
+        healthlink: {
+          title: "HealthLink eReferral",
+          copy: "Prioritise this path for secure clinical referrals from GP and specialist software.",
+        },
+        online: {
+          title: "Online referral form",
+          copy: "Use the structured form when HealthLink is not available or the referrer needs a direct web pathway.",
+        },
+        support: {
+          title: "Phone and email support",
+          copy: "Use intake support when the referral needs clarification, extra attachments or help choosing the right next step.",
+        },
+      };
+
+      const finderState = {
+        access: "healthlink",
+        context: "standard",
+        attachments: "ready",
+      };
+
+      const finderContent = {
+        healthlink: {
+          title: "HealthLink eReferral",
+          copy: "Send the referral through clinical software using IHL's HealthLink EDI. This keeps the referral secure and easy for intake to reconcile.",
+          steps: [
+            "Search Institute for Healthy Living in HealthLink.",
+            "Use EDI: inshealh.",
+            "Attach the referral letter and relevant reports.",
+          ],
+          primary: "Use HealthLink EDI",
+          primaryHref: "#pathways",
+          secondary: "Open online form",
+          secondaryHref: "online-referral-form-v1.html",
+        },
+        online: {
+          title: "Online referral form",
+          copy: "Use the online form when HealthLink is unavailable and the referrer can provide the core referral details in a structured way.",
+          steps: [
+            "Complete the structured referral fields.",
+            "Add the referrer's contact details for follow-up.",
+            "Upload or send supporting documents as directed by intake.",
+          ],
+          primary: "Open online form",
+          primaryHref: "online-referral-form-v1.html",
+          secondary: "View HealthLink details",
+          secondaryHref: "#pathways",
+        },
+        support: {
+          title: "Intake support",
+          copy: "Use intake support when the best pathway is unclear, the presentation is complex, or a quick conversation will prevent back-and-forth.",
+          steps: [
+            "Call or email reception and intake support.",
+            "Share only the minimum detail needed to route the referral.",
+            "Intake confirms the cleanest referral path or next step.",
+          ],
+          primary: "Email intake",
+          primaryHref: "mailto:intake@institute4healthyliving.com",
+          secondary: "Call reception",
+          secondaryHref: "tel:+61289370667",
+        },
+      };
+
+      const matchState = {
+        age: "adult",
+        presentation: "mood",
+        funding: "private",
+      };
+
+      const ageLabels = {
+        adult: "Adult",
+        child: "Child",
+        adolescent: "Adolescent",
+        couple: "Couple or family",
+      };
+
+      const presentationLabels = {
+        mood: "mood or anxiety",
+        trauma: "trauma",
+        assessment: "assessment",
+        complex: "complex care",
+      };
+
+      const fundingLabels = {
+        private: "Private",
+        mhtp: "Medicare MHTP",
+        ndis: "NDIS",
+        insurance: "Insurance",
+      };
+
+      const presentationCopy = {
+        mood: "Intake prioritises presenting concern, preferred modality, availability, risk level and whether the patient would benefit from a clinician with specific experience in mood, anxiety or adjustment presentations.",
+        trauma: "Intake looks for trauma-informed experience, pacing, risk context, modality fit and whether the patient needs a stabilisation-first pathway.",
+        assessment: "Intake checks whether assessment, therapy, school liaison or diagnostic clarification is the right starting point before matching the referral.",
+        complex: "Intake considers comorbidity, risk, family system, funding constraints, senior clinician fit and whether IHL is the right level of care.",
+      };
+
+      const matchChips = {
+        mood: ["Presentation fit", "Modality fit", "Availability", "Funding pathway"],
+        trauma: ["Trauma experience", "Safety and pacing", "Modality fit", "Continuity"],
+        assessment: ["Assessment pathway", "Report needs", "Age range", "School or GP context"],
+        complex: ["Senior fit", "Risk review", "Care coordination", "Escalation threshold"],
+      };
+
+      function setActiveButton(button) {
+        const group = button.parentElement;
+        group.querySelectorAll("button").forEach((item) => item.classList.remove("is-active"));
+        button.classList.add("is-active");
+      }
+
+      function updatePathwayInsight(pathway) {
+        const content = pathwayContent[pathway];
+        document.getElementById("pathway-insight-title").textContent = content.title;
+        document.getElementById("pathway-insight-copy").textContent = content.copy;
+      }
+
+      function getFinderPath() {
+        if (finderState.context === "urgent" || finderState.access === "unsure") return "support";
+        if (finderState.access === "no-healthlink") return "online";
+        return "healthlink";
+      }
+
+      function updateFinder() {
+        const content = finderContent[getFinderPath()];
+        document.getElementById("finder-title").textContent = content.title;
+        document.getElementById("finder-copy").textContent = content.copy;
+        document.getElementById("finder-steps").innerHTML = content.steps.map((step) => `<li>${step}</li>`).join("");
+
+        const primary = document.getElementById("finder-primary");
+        const secondary = document.getElementById("finder-secondary");
+        primary.textContent = content.primary;
+        primary.href = content.primaryHref;
+        secondary.textContent = content.secondary;
+        secondary.href = content.secondaryHref;
+      }
+
+      function updateReadiness() {
+        const checks = Array.from(document.querySelectorAll(".readiness-check"));
+        const complete = checks.filter((check) => check.checked).length;
+        const percent = Math.max(10, Math.round((complete / checks.length) * 100));
+        document.getElementById("readiness-label").textContent = `Referral readiness: ${complete} of ${checks.length}`;
+        document.getElementById("readiness-fill").style.width = `${percent}%`;
+      }
+
+      function updateMatch() {
+        const title = `${ageLabels[matchState.age]} ${presentationLabels[matchState.presentation]} referral`;
+        const chips = [
+          ...matchChips[matchState.presentation],
+          fundingLabels[matchState.funding],
+        ];
+
+        document.getElementById("match-title").textContent = title;
+        document.getElementById("match-copy").textContent = presentationCopy[matchState.presentation];
+        document.getElementById("match-chips").innerHTML = chips
+          .map((chip) => `<span class="chip">${chip}</span>`)
+          .join("");
+      }
+
+      document.querySelectorAll(".pathway-choice").forEach((button) => {
+        button.addEventListener("click", () => {
+          document.querySelectorAll(".pathway-choice").forEach((item) => item.classList.remove("is-active"));
+          button.classList.add("is-active");
+          updatePathwayInsight(button.dataset.pathway);
+        });
+      });
+
+      document.querySelectorAll("[data-finder]").forEach((button) => {
+        button.addEventListener("click", () => {
+          setActiveButton(button);
+          finderState[button.dataset.finder] = button.dataset.value;
+          updateFinder();
+        });
+      });
+
+      document.querySelectorAll(".readiness-check").forEach((check) => {
+        check.addEventListener("change", updateReadiness);
+      });
+
+      document.querySelectorAll("[data-match]").forEach((button) => {
+        button.addEventListener("click", () => {
+          setActiveButton(button);
+          matchState[button.dataset.match] = button.dataset.value;
+          updateMatch();
+        });
+      });
+
+      updateFinder();
+      updateReadiness();
+      updateMatch();
+    </script>
+  </body>
+</html>
