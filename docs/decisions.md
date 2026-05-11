@@ -4,6 +4,8 @@
 
 - The referrer landing page is the active priority. Broader site-wide brand work is useful background, but not the current build focus.
 - The page should show all referral pathways clearly so referrers can choose what works for them.
+- The page should feel like a calm professional referral reference, not a sales funnel or guided tour.
+- Avoid numbered process cards and heavy explanatory blocks unless they are required for clinical safety or form completion.
 - HealthLink EDI `inshealh` must remain easy to find and copy.
 - The online form, intake email, phone and fax should be presented as available referral options.
 - HubSpot should be treated as referrer/campaign CRM only unless a separate data policy approves otherwise.

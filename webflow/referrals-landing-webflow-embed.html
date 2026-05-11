@@ -6,13 +6,19 @@
 <style>
   .rf-page {
     --rf-green: var(--swatch--green, #2d4f37);
-    --rf-green-dark: #114733;
-    --rf-light: #f7f8f5;
-    --rf-border: #e2e6df;
-    --rf-muted: #4a4a4a;
+    --rf-green-dark: #123926;
+    --rf-bg: #f7f8f5;
     --rf-white: #ffffff;
-    color: var(--rf-green);
-    background: var(--rf-light);
+    --rf-ink: #101412;
+    --rf-body: #3f4b45;
+    --rf-muted: #657169;
+    --rf-quiet: #8b948e;
+    --rf-border: #e1e5de;
+    --rf-border-strong: #cbd4cb;
+    --rf-sage: #edf3ed;
+    --rf-mist: #eef3f4;
+    color: var(--rf-ink);
+    background: var(--rf-bg);
     font-family: var(--font--primary-family, inherit);
   }
 
@@ -21,33 +27,36 @@
   }
 
   .rf-section {
-    padding: 6rem 2.5rem;
+    padding: 5.5rem 2.5rem;
     border-bottom: 1px solid var(--rf-border);
-    background: var(--rf-light);
   }
 
   .rf-section.is-white {
+    background: rgba(255, 255, 255, .68);
+  }
+
+  .rf-section.is-guide {
     background: var(--rf-white);
   }
 
   .rf-container {
     width: 100%;
-    max-width: 1200px;
+    max-width: 1160px;
     margin: 0 auto;
   }
 
-  .rf-hero-grid {
+  .rf-hero {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(360px, 420px);
+    grid-template-columns: minmax(0, 1fr) minmax(340px, 420px);
     gap: 4rem;
-    align-items: center;
+    align-items: start;
   }
 
   .rf-eyebrow {
-    margin: 0 0 1rem;
+    margin: 0;
     color: var(--rf-green);
     font-size: .75rem;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: .16em;
     text-transform: uppercase;
   }
@@ -56,62 +65,66 @@
   .rf-h2,
   .rf-h3 {
     margin: 0;
-    color: #111111;
+    color: var(--rf-ink);
     font-family: var(--font--secondary-family, inherit);
     font-weight: 400;
-    letter-spacing: -.035em;
+    letter-spacing: 0;
   }
 
   .rf-h1 {
-    max-width: 760px;
-    font-size: clamp(3.5rem, 7vw, 6rem);
-    line-height: .95;
+    max-width: 720px;
+    margin-top: 1.1rem;
+    font-size: clamp(3.1rem, 6vw, 5.25rem);
+    line-height: .98;
   }
 
   .rf-h2 {
-    max-width: 760px;
-    font-size: clamp(2.4rem, 4.8vw, 4.5rem);
-    line-height: .96;
+    max-width: 780px;
+    margin-top: .75rem;
+    font-size: clamp(2.2rem, 4vw, 3.9rem);
+    line-height: 1.02;
   }
 
   .rf-h3 {
-    font-size: clamp(1.45rem, 2.2vw, 2rem);
-    line-height: 1;
+    font-size: clamp(1.2rem, 1.8vw, 1.55rem);
+    line-height: 1.12;
   }
 
   .rf-copy {
-    max-width: 690px;
+    max-width: 680px;
     margin: 1.35rem 0 0;
-    color: var(--rf-muted);
-    font-size: 1.25rem;
-    line-height: 1.45;
+    color: var(--rf-body);
+    font-size: 1.2rem;
+    line-height: 1.55;
   }
 
   .rf-small {
     color: var(--rf-muted);
     font-size: .95rem;
-    line-height: 1.55;
+    line-height: 1.5;
   }
 
   .rf-actions {
     display: flex;
     flex-wrap: wrap;
     gap: .85rem;
-    margin-top: 2rem;
+    margin-top: 1.85rem;
   }
 
-  .rf-button {
-    min-height: 3rem;
+  .rf-button,
+  .rf-copy-button {
+    min-height: 2.85rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(45, 79, 55, .22);
+    border: 1px solid var(--rf-border-strong);
     border-radius: 999px;
     background: var(--rf-white);
-    color: var(--rf-green);
-    padding: 0 1.35rem;
+    color: var(--rf-ink);
+    padding: 0 1.2rem;
     text-decoration: none;
-    font-size: 1rem;
+    font: inherit;
+    font-size: .98rem;
     font-weight: 600;
     line-height: 1;
     cursor: pointer;
@@ -123,179 +136,292 @@
     color: var(--rf-white);
   }
 
-  .rf-button:hover {
-    border-color: var(--rf-green-dark);
-    background: var(--rf-green-dark);
-    color: var(--rf-white);
+  .rf-button.is-subtle {
+    border-color: rgba(45, 79, 55, .2);
+    background: #f9fbf8;
+    color: var(--rf-green);
   }
 
   .rf-note {
-    margin-top: 1.4rem;
+    max-width: 660px;
+    margin: 1.35rem 0 0;
+    color: var(--rf-muted);
+    font-size: .9rem;
+    line-height: 1.5;
+  }
+
+  .rf-proof {
+    max-width: 720px;
+    margin-top: 2.6rem;
+    border-top: 1px solid var(--rf-border);
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .rf-proof > div {
+    padding: 1.1rem 1.2rem 0 0;
+  }
+
+  .rf-proof strong,
+  .rf-proof span {
+    display: block;
+  }
+
+  .rf-proof strong {
+    font-size: .95rem;
+    font-weight: 600;
+  }
+
+  .rf-proof span {
+    margin-top: .35rem;
+    color: var(--rf-muted);
+    font-size: .92rem;
+    line-height: 1.42;
+  }
+
+  .rf-panel {
+    border: 1px solid var(--rf-border);
+    border-radius: 12px;
+    background: var(--rf-white);
+    overflow: hidden;
+    box-shadow: 0 22px 60px rgba(24, 35, 29, .08);
+  }
+
+  .rf-panel-head {
+    padding: 1.65rem;
+    border-bottom: 1px solid var(--rf-border);
+    background: linear-gradient(180deg, #fff 0%, #fbfcfa 100%);
+  }
+
+  .rf-panel-head .rf-h3 {
+    margin-top: .75rem;
+  }
+
+  .rf-edi {
+    margin-top: 1.1rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: .7rem;
+    align-items: center;
+  }
+
+  .rf-edi-code {
+    min-width: 0;
+    border: 1px solid rgba(45, 79, 55, .22);
+    border-radius: 999px;
+    background: var(--rf-sage);
+    padding: .9rem 1rem;
+    color: var(--rf-green);
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-align: center;
+    overflow-wrap: anywhere;
+  }
+
+  .rf-copy-button {
+    min-height: 3.1rem;
+    color: var(--rf-green);
+  }
+
+  .rf-details {
+    padding: .45rem 1.65rem .6rem;
+  }
+
+  .rf-detail-row {
+    display: grid;
+    grid-template-columns: 8rem minmax(0, 1fr);
+    gap: 1rem;
+    border-bottom: 1px solid var(--rf-border);
+    padding: 1.1rem 0;
+  }
+
+  .rf-detail-row:last-child {
+    border-bottom: 0;
+  }
+
+  .rf-label {
+    color: var(--rf-quiet);
+    font-size: .74rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+
+  .rf-detail-row strong,
+  .rf-detail-row span {
+    display: block;
+  }
+
+  .rf-detail-row strong {
+    color: var(--rf-ink);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+  }
+
+  .rf-detail-row span {
+    margin-top: .3rem;
+    color: var(--rf-muted);
+    font-size: .92rem;
+    line-height: 1.45;
+  }
+
+  .rf-split,
+  .rf-guide {
+    display: grid;
+    grid-template-columns: minmax(0, .9fr) minmax(340px, .62fr);
+    gap: 3.8rem;
+    align-items: start;
+  }
+
+  .rf-side-note {
+    border-left: 1px solid var(--rf-border-strong);
+    padding-left: 1.8rem;
+  }
+
+  .rf-side-note p {
+    margin: 0;
+    color: var(--rf-body);
+    font-size: 1.1rem;
+    line-height: 1.62;
+  }
+
+  .rf-list {
+    margin: 1.8rem 0 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--rf-border);
+  }
+
+  .rf-list li {
+    display: grid;
+    grid-template-columns: 10rem minmax(0, 1fr);
+    gap: 1rem;
+    border-bottom: 1px solid var(--rf-border);
+    padding: 1rem 0;
+  }
+
+  .rf-list strong {
+    color: var(--rf-ink);
+    font-size: .96rem;
+    font-weight: 600;
+  }
+
+  .rf-list span {
+    color: var(--rf-muted);
+    font-size: .95rem;
+    line-height: 1.5;
+  }
+
+  .rf-channels {
+    margin-top: 2.2rem;
+    border-top: 1px solid var(--rf-border-strong);
+  }
+
+  .rf-channel {
+    display: grid;
+    grid-template-columns: minmax(180px, .5fr) minmax(0, 1fr) auto;
+    gap: 1.4rem;
+    align-items: center;
+    border-bottom: 1px solid var(--rf-border);
+    padding: 1.4rem 0;
+  }
+
+  .rf-channel p {
+    margin: 0;
+    color: var(--rf-muted);
+    font-size: 1rem;
+    line-height: 1.48;
+  }
+
+  .rf-channel p strong {
+    color: var(--rf-ink);
+    overflow-wrap: anywhere;
+  }
+
+  .rf-intake {
+    margin-top: 2.2rem;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    border-top: 1px solid var(--rf-border-strong);
+  }
+
+  .rf-intake-item {
+    min-width: 0;
+    border-right: 1px solid var(--rf-border);
+    border-bottom: 1px solid var(--rf-border);
+    padding: 1.25rem 1.1rem 1.25rem 0;
+  }
+
+  .rf-intake-item:last-child {
+    border-right: 0;
+  }
+
+  .rf-intake-item strong,
+  .rf-intake-item span {
+    display: block;
+  }
+
+  .rf-intake-item strong {
+    font-size: .96rem;
+    font-weight: 600;
+  }
+
+  .rf-intake-item span {
+    margin-top: .5rem;
+    color: var(--rf-muted);
+    font-size: .9rem;
+    line-height: 1.45;
+  }
+
+  .rf-after {
+    max-width: 860px;
+    margin-top: 2rem;
+    border-left: 3px solid var(--rf-green);
+    background: var(--rf-mist);
+    padding: 1.25rem 1.35rem;
+    color: #34453e;
+    font-size: 1rem;
+    line-height: 1.58;
+  }
+
+  .rf-guide-card {
+    border: 1px solid var(--rf-border);
+    border-radius: 12px;
+    padding: 1.65rem;
+    background: #fbfcfa;
+  }
+
+  .rf-guide-card .rf-h3 {
+    margin-top: .75rem;
+  }
+
+  .rf-guide-card ul {
+    margin: 1.1rem 0 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--rf-border);
+  }
+
+  .rf-guide-card li {
+    border-bottom: 1px solid var(--rf-border);
+    padding: .7rem 0;
     color: var(--rf-muted);
     font-size: .95rem;
     line-height: 1.45;
   }
 
-  .rf-panel {
-    border: 1px solid rgba(45, 79, 55, .16);
-    border-radius: 18px;
-    background: var(--rf-white);
-    overflow: hidden;
-  }
-
-  .rf-panel-head {
-    padding: 2rem;
-    border-bottom: 1px solid var(--rf-border);
-  }
-
-  .rf-code-row {
+  .rf-support {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
-    gap: .85rem;
-    margin-top: 1.4rem;
-  }
-
-  .rf-code {
-    min-height: 3.25rem;
-    display: inline-flex;
+    gap: 1.4rem;
     align-items: center;
-    justify-content: center;
-    border: 1px solid rgba(45, 79, 55, .24);
-    border-radius: 999px;
-    background: rgba(45, 79, 55, .05);
-    color: var(--rf-green);
-    padding: 0 1.2rem;
-    font-size: 1.25rem;
-    font-weight: 600;
-    letter-spacing: .02em;
-  }
-
-  .rf-panel-body {
-    display: grid;
-    gap: .85rem;
-    padding: 1.4rem;
-  }
-
-  .rf-route {
-    display: grid;
-    grid-template-columns: 2.35rem 1fr;
-    gap: 1rem;
-    align-items: start;
-    border: 1px solid var(--rf-border);
     border-radius: 12px;
-    padding: 1rem;
-    background: var(--rf-white);
-  }
-
-  .rf-route-number {
-    width: 2.35rem;
-    height: 2.35rem;
-    display: grid;
-    place-items: center;
-    border-radius: 8px;
-    background: rgba(45, 79, 55, .07);
-    color: var(--rf-green);
-    font-weight: 600;
-  }
-
-  .rf-grid-2,
-  .rf-grid-3,
-  .rf-grid-4 {
-    display: grid;
-    gap: 1rem;
-    margin-top: 2rem;
-  }
-
-  .rf-grid-2 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .rf-grid-3 {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .rf-grid-4 {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
-  .rf-card {
-    border: 1px solid var(--rf-border);
-    border-radius: 14px;
-    background: var(--rf-white);
-    padding: 1.4rem;
-  }
-
-  .rf-card.is-featured {
-    border-color: rgba(45, 79, 55, .28);
-    background: linear-gradient(180deg, rgba(45, 79, 55, .04), #ffffff 72%);
-  }
-
-  .rf-card-kicker {
-    display: block;
-    margin-bottom: 1rem;
-    color: var(--rf-green);
-    font-size: .78rem;
-    font-weight: 600;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-  }
-
-  .rf-card p,
-  .rf-route p {
-    margin: .75rem 0 0;
-    color: var(--rf-muted);
-    font-size: 1rem;
-    line-height: 1.5;
-  }
-
-  .rf-card p strong,
-  .rf-route p strong {
-    overflow-wrap: anywhere;
-  }
-
-  .rf-warning {
-    margin-top: 1.5rem;
-    border: 1px solid rgba(237, 181, 37, .42);
-    border-radius: 12px;
-    background: #fffaf0;
-    padding: 1rem 1.25rem;
-    color: #59400f;
-    font-size: .95rem;
-    line-height: 1.5;
-  }
-
-  .rf-guide {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
-    gap: 2rem;
-    align-items: center;
-  }
-
-  .rf-guide-list {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    display: grid;
-    gap: .75rem;
-  }
-
-  .rf-guide-list li {
-    border-bottom: 1px solid var(--rf-border);
-    padding-bottom: .75rem;
-    color: var(--rf-muted);
-    font-size: 1rem;
-    line-height: 1.4;
-  }
-
-  .rf-support {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    align-items: center;
-    border-radius: 18px;
-    background: var(--rf-green);
+    background: var(--rf-green-dark);
     color: var(--rf-white);
-    padding: 2rem;
+    padding: 1.8rem;
   }
 
   .rf-support .rf-h3,
@@ -304,24 +430,65 @@
   }
 
   .rf-support .rf-small {
-    opacity: .78;
+    opacity: .74;
+  }
+
+  .rf-support .rf-actions {
+    margin-top: 0;
+    justify-content: flex-end;
+  }
+
+  .rf-support .rf-button {
+    border-color: rgba(255, 255, 255, .24);
+    background: transparent;
+    color: var(--rf-white);
   }
 
   @media (max-width: 991px) {
-    .rf-hero-grid,
+    .rf-hero,
+    .rf-split,
     .rf-guide {
       grid-template-columns: 1fr;
     }
 
-    .rf-grid-3,
-    .rf-grid-4 {
+    .rf-proof,
+    .rf-intake {
       grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .rf-intake-item:nth-child(2n) {
+      border-right: 0;
+    }
+
+    .rf-side-note {
+      border-left: 0;
+      border-top: 1px solid var(--rf-border-strong);
+      padding-left: 0;
+      padding-top: 1.8rem;
+    }
+
+    .rf-channel {
+      grid-template-columns: minmax(170px, .48fr) minmax(0, 1fr);
+    }
+
+    .rf-channel .rf-button,
+    .rf-channel .rf-copy-button {
+      grid-column: 2;
+      width: fit-content;
+    }
+
+    .rf-support {
+      grid-template-columns: 1fr;
+    }
+
+    .rf-support .rf-actions {
+      justify-content: flex-start;
     }
   }
 
   @media (max-width: 700px) {
     .rf-section {
-      padding: 4.5rem 1.25rem;
+      padding: 4rem 1.25rem;
     }
 
     .rf-h1 {
@@ -329,190 +496,177 @@
       line-height: 1;
     }
 
-    .rf-h2 {
-      font-size: 2.35rem;
-      line-height: 1;
-    }
-
     .rf-copy {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
     }
 
     .rf-actions,
+    .rf-proof,
+    .rf-edi,
+    .rf-detail-row,
+    .rf-list li,
+    .rf-channel,
+    .rf-intake,
     .rf-support {
       display: grid;
+      grid-template-columns: 1fr;
     }
 
     .rf-button,
-    .rf-code {
+    .rf-copy-button {
+      width: 100%;
+      white-space: normal;
+      text-align: center;
+    }
+
+    .rf-channel .rf-button,
+    .rf-channel .rf-copy-button {
+      grid-column: auto;
       width: 100%;
     }
 
-    .rf-code-row,
-    .rf-grid-2,
-    .rf-grid-3,
-    .rf-grid-4 {
-      grid-template-columns: 1fr;
+    .rf-intake-item,
+    .rf-intake-item:nth-child(2n) {
+      border-right: 0;
+      padding-right: 0;
     }
   }
 </style>
 
 <div class="rf-page">
-  <section class="rf-section">
-    <div class="rf-container rf-hero-grid">
+  <section class="rf-section" id="rf-referral-details">
+    <div class="rf-container rf-hero">
       <div>
-        <div class="rf-eyebrow">IHL Referrals</div>
+        <p class="rf-eyebrow">For health professionals</p>
         <h1 class="rf-h1">Refer a patient to IHL.</h1>
-        <p class="rf-copy">Clinical psychology in Bondi Junction and via secure telehealth. Evidence-based care for adults, adolescents and children across everyday wellbeing and complex presentations.</p>
+        <p class="rf-copy">A clear referral pathway into evidence-based psychological care. IHL reviews each referral for presentation, complexity and clinician fit, with care available from Bondi Junction and via secure telehealth.</p>
         <div class="rf-actions">
-          <a class="rf-button is-primary" href="#rf-how-to-refer">How to refer</a>
-          <a class="rf-button" href="#gp_referral_form">Start online referral</a>
-          <a class="rf-button" href="mailto:intake@institute4healthyliving.com">Talk to intake</a>
+          <a class="rf-button is-primary" href="#gp_referral_form">Open online referral</a>
+          <a class="rf-button is-subtle" href="#rf-channels">Referral channels</a>
+          <a class="rf-button" href="mailto:intake@institute4healthyliving.com">Email intake</a>
         </div>
-        <p class="rf-note">Reviewed during business hours. Not for emergencies or acute crisis care. If there is immediate risk, use emergency or acute-care pathways.</p>
+        <p class="rf-note">Routine referrals are reviewed during business hours. This page is not for emergencies or acute crisis care. If there is immediate risk, please use emergency or acute-care pathways.</p>
+        <div class="rf-proof" aria-label="IHL referral principles">
+          <div><strong>Clinical matching</strong><span>Referral review considers age, presentation, risk, complexity and clinician expertise.</span></div>
+          <div><strong>Collaborative care</strong><span>Relevant updates can be shared with treating teams where appropriate and with consent.</span></div>
+          <div><strong>Established practice</strong><span>AHPRA-registered clinicians supporting adults, young people, couples and families.</span></div>
+        </div>
       </div>
 
-      <aside class="rf-panel" aria-label="Primary referral details">
+      <aside class="rf-panel" aria-label="Referral contact details">
         <div class="rf-panel-head">
-          <div class="rf-eyebrow">Referral details</div>
-          <h2 class="rf-h2">How to refer</h2>
-          <div class="rf-code-row">
-            <button class="rf-code" type="button" data-rf-copy="inshealh" aria-label="Copy HealthLink EDI code">inshealh</button>
-            <a class="rf-button" href="#rf-how-to-refer">Options</a>
+          <p class="rf-eyebrow">Referral details</p>
+          <h2 class="rf-h3">Send a referral through the channel that suits your workflow.</h2>
+          <div class="rf-edi">
+            <div class="rf-edi-code">HealthLink EDI: inshealh</div>
+            <button class="rf-copy-button" type="button" data-rf-copy="inshealh" aria-label="Copy HealthLink EDI code">Copy</button>
           </div>
         </div>
-        <div class="rf-panel-body">
-          <div class="rf-route">
-            <div class="rf-route-number">1</div>
-            <div>
-              <h3 class="rf-h3">HealthLink</h3>
-              <p>Search Institute for Healthy Living or use EDI <strong>inshealh</strong>.</p>
-            </div>
+        <div class="rf-details">
+          <div class="rf-detail-row">
+            <div class="rf-label">HealthLink</div>
+            <div><strong>Institute for Healthy Living</strong><span>Use EDI inshealh from compatible clinical software.</span></div>
           </div>
-          <div class="rf-route">
-            <div class="rf-route-number">2</div>
-            <div>
-              <h3 class="rf-h3">Online form</h3>
-              <p>Complete, attach and submit using the secure referral form.</p>
-            </div>
+          <div class="rf-detail-row">
+            <div class="rf-label">Online</div>
+            <div><strong><a href="#gp_referral_form">Secure online referral form</a></strong><span>Submit referral details and supporting documents.</span></div>
           </div>
-          <div class="rf-route">
-            <div class="rf-route-number">3</div>
-            <div>
-              <h3 class="rf-h3">Intake support</h3>
-              <p>Email intake or call reception for referral questions.</p>
-            </div>
+          <div class="rf-detail-row">
+            <div class="rf-label">Email</div>
+            <div><strong><a href="mailto:intake@institute4healthyliving.com">intake@institute4healthyliving.com</a></strong><span>For referral questions or supporting information.</span></div>
+          </div>
+          <div class="rf-detail-row">
+            <div class="rf-label">Phone / fax</div>
+            <div><strong>02 8937 0667 / 02 8072 3963</strong><span>Reception is available Monday to Friday, 9:00 am to 5:00 pm.</span></div>
           </div>
         </div>
       </aside>
     </div>
   </section>
 
-  <section class="rf-section is-white" id="rf-why">
-    <div class="rf-container">
-      <div class="rf-eyebrow">Why refer to IHL</div>
-      <h2 class="rf-h2">Comprehensive intake and clinician matching.</h2>
-      <div class="rf-grid-4">
-        <article class="rf-card">
-          <h3 class="rf-h3">Comprehensive intake</h3>
-          <p>Structured review supports matching by presentation, complexity, age and clinical fit.</p>
-        </article>
-        <article class="rf-card">
-          <h3 class="rf-h3">Clinical depth</h3>
-          <p>AHPRA-registered psychologists supporting adults, adolescents, children, couples and families.</p>
-        </article>
-        <article class="rf-card">
-          <h3 class="rf-h3">Evidence-based care</h3>
-          <p>CBT, DBT, Schema Therapy, EMDR, ACT and other modality-informed approaches.</p>
-        </article>
-        <article class="rf-card">
-          <h3 class="rf-h3">Continuity</h3>
-          <p>Clinically relevant communication with treating teams where appropriate and with consent.</p>
-        </article>
+  <section class="rf-section is-white" id="rf-clinical-fit">
+    <div class="rf-container rf-split">
+      <div>
+        <p class="rf-eyebrow">Clinical fit</p>
+        <h2 class="rf-h2">Thoughtful intake, matched to the right clinician.</h2>
+        <p class="rf-copy">IHL provides clinical psychology care across a broad range of presentations. Referrals are considered through a clinical lens, so the next step is appropriate for the patient and practical for the referrer.</p>
+      </div>
+      <div class="rf-side-note">
+        <p>The right match matters. Intake uses the information provided to help identify clinician availability, therapeutic fit, appointment mode and any additional context needed before care begins.</p>
+        <ul class="rf-list">
+          <li><strong>Who we support</strong><span>Adults, adolescents, children, couples, parents and families.</span></li>
+          <li><strong>Referral contexts</strong><span>Anxiety, mood, trauma, relationships, parenting, eating concerns, OCD, ADHD, grief, adjustment and complex comorbidity.</span></li>
+          <li><strong>Care approaches</strong><span>CBT, DBT, Schema Therapy, EMDR, ACT and other evidence-based approaches matched to clinician expertise.</span></li>
+        </ul>
       </div>
     </div>
   </section>
 
-  <section class="rf-section" id="rf-how-to-refer">
+  <section class="rf-section" id="rf-channels">
     <div class="rf-container">
-      <div class="rf-eyebrow">How to refer</div>
-      <h2 class="rf-h2">Choose the pathway that works for you.</h2>
-      <div class="rf-grid-2">
-        <article class="rf-card is-featured">
-          <span class="rf-card-kicker">01</span>
+      <p class="rf-eyebrow">Referral channels</p>
+      <h2 class="rf-h2">All referral pathways are available.</h2>
+      <p class="rf-copy">Use the option that works best for your practice. HealthLink, online referral, email, phone and fax all lead back to the intake team.</p>
+      <div class="rf-channels" aria-label="Referral channels">
+        <div class="rf-channel">
           <h3 class="rf-h3">HealthLink eReferral</h3>
-          <p>Search Institute for Healthy Living or use HealthLink EDI <strong>inshealh</strong>.</p>
-          <div class="rf-actions"><button class="rf-button is-primary" type="button" data-rf-copy="inshealh">Copy EDI</button></div>
-        </article>
-        <article class="rf-card">
-          <span class="rf-card-kicker">02</span>
+          <p>Search <strong>Institute for Healthy Living</strong> or use HealthLink EDI <strong>inshealh</strong>.</p>
+          <button class="rf-copy-button" type="button" data-rf-copy="inshealh">Copy EDI</button>
+        </div>
+        <div class="rf-channel">
           <h3 class="rf-h3">Online referral form</h3>
-          <p>Complete, attach and submit using the secure online referral form.</p>
-          <div class="rf-actions"><a class="rf-button" href="#gp_referral_form">Open form</a></div>
-        </article>
-        <article class="rf-card">
-          <span class="rf-card-kicker">03</span>
+          <p>Complete referral details and attach supporting documents through the online form.</p>
+          <a class="rf-button is-primary" href="#gp_referral_form">Open form</a>
+        </div>
+        <div class="rf-channel">
           <h3 class="rf-h3">Intake email</h3>
-          <p>Email <strong>intake@institute4healthyliving.com</strong>. Monitored Monday to Friday, 9 am to 5 pm.</p>
-          <div class="rf-actions"><a class="rf-button" href="mailto:intake@institute4healthyliving.com">Email intake</a></div>
-        </article>
-        <article class="rf-card">
-          <span class="rf-card-kicker">04</span>
+          <p>Email <strong>intake@institute4healthyliving.com</strong> for referral questions or supporting information.</p>
+          <a class="rf-button" href="mailto:intake@institute4healthyliving.com">Email intake</a>
+        </div>
+        <div class="rf-channel">
           <h3 class="rf-h3">Phone or fax</h3>
           <p>Call <strong>02 8937 0667</strong> or fax referral documents to <strong>02 8072 3963</strong>.</p>
-          <div class="rf-actions"><a class="rf-button" href="tel:+61289370667">Call reception</a></div>
-        </article>
-      </div>
-      <div class="rf-warning">Not for emergency or crisis referrals. If there is immediate risk, use emergency or acute-care pathways.</div>
-    </div>
-  </section>
-
-  <section class="rf-section is-white">
-    <div class="rf-container">
-      <div class="rf-eyebrow">What to include</div>
-      <h2 class="rf-h2">Referral details.</h2>
-      <div class="rf-grid-3">
-        <article class="rf-card"><span class="rf-card-kicker">01</span><h3 class="rf-h3">Patient details</h3><p>Name, date of birth, phone, email and parent or guardian details where relevant.</p></article>
-        <article class="rf-card"><span class="rf-card-kicker">02</span><h3 class="rf-h3">Reason for referral</h3><p>A brief summary of presenting concerns, functional impact and what support is being requested.</p></article>
-        <article class="rf-card"><span class="rf-card-kicker">03</span><h3 class="rf-h3">Urgency and risk</h3><p>Immediate risk, complexity, safeguarding or urgency concerns intake should know early.</p></article>
-        <article class="rf-card"><span class="rf-card-kicker">04</span><h3 class="rf-h3">Funding pathway</h3><p>MHTP, private, NDIS, insurance, WorkCover, DVA or other pathway if known.</p></article>
-        <article class="rf-card"><span class="rf-card-kicker">05</span><h3 class="rf-h3">Documents</h3><p>Referral letter, Mental Health Treatment Plan, reports or assessment documents where available.</p></article>
-        <article class="rf-card"><span class="rf-card-kicker">06</span><h3 class="rf-h3">Preferences</h3><p>Clinician, appointment mode, language, gender or scheduling needs if clinically relevant.</p></article>
-      </div>
-    </div>
-  </section>
-
-  <section class="rf-section">
-    <div class="rf-container">
-      <div class="rf-eyebrow">Referral pathway</div>
-      <h2 class="rf-h2">Review, matching and next steps.</h2>
-      <div class="rf-grid-4">
-        <article class="rf-card"><span class="rf-card-kicker">01</span><h3 class="rf-h3">Submit referral</h3><p>Submit via HealthLink, online form, email, phone or fax.</p></article>
-        <article class="rf-card"><span class="rf-card-kicker">02</span><h3 class="rf-h3">Intake review</h3><p>Referral reason, urgency, risk, funding and documents are reviewed.</p></article>
-        <article class="rf-card"><span class="rf-card-kicker">03</span><h3 class="rf-h3">Clinician matching</h3><p>Matching considers presentation, complexity, age, comorbidities and clinician expertise.</p></article>
-        <article class="rf-card"><span class="rf-card-kicker">04</span><h3 class="rf-h3">Appointment and feedback</h3><p>Updates to the treating team are provided where clinically appropriate and with client consent.</p></article>
-      </div>
-    </div>
-  </section>
-
-  <section class="rf-section is-white">
-    <div class="rf-container rf-guide">
-      <div>
-        <div class="rf-eyebrow">Referrer guide</div>
-        <h2 class="rf-h2">IHL Clinical Referrer Guide.</h2>
-        <p class="rf-copy">Practice details, referral pathways, clinical scope, team overview and intake contacts.</p>
-        <div class="rf-actions">
-          <a class="rf-button is-primary" href="REFERRER_GUIDE_URL" target="_blank" rel="noopener">Download guide</a>
-          <a class="rf-button" href="#gp_referral_form">Open online form</a>
+          <a class="rf-button" href="tel:+61289370667">Call reception</a>
         </div>
       </div>
-      <div class="rf-card">
-        <span class="rf-card-kicker">Guide contents</span>
-        <ul class="rf-guide-list">
-          <li>Practice overview and referral pathway.</li>
-          <li>HealthLink EDI and intake contact details.</li>
+    </div>
+  </section>
+
+  <section class="rf-section is-white" id="rf-include">
+    <div class="rf-container">
+      <p class="rf-eyebrow">What to include</p>
+      <h2 class="rf-h2">Information that helps intake move well.</h2>
+      <p class="rf-copy">A concise referral is enough when it includes the clinical details needed to understand fit, urgency and the most appropriate next step.</p>
+      <div class="rf-intake">
+        <div class="rf-intake-item"><strong>Patient details</strong><span>Name, date of birth, phone, email and guardian details where relevant.</span></div>
+        <div class="rf-intake-item"><strong>Reason for referral</strong><span>Presenting concerns, functional impact and what support is being requested.</span></div>
+        <div class="rf-intake-item"><strong>Urgency and risk</strong><span>Any safeguarding, complexity or urgency information intake should know early.</span></div>
+        <div class="rf-intake-item"><strong>Funding and documents</strong><span>MHTP, private, NDIS, insurance, WorkCover, DVA or reports if available.</span></div>
+        <div class="rf-intake-item"><strong>Preferences</strong><span>Clinician, appointment mode, language, gender or scheduling needs where clinically relevant.</span></div>
+      </div>
+      <p class="rf-after">After a referral is received, intake reviews the information, clarifies anything missing where needed, and helps direct the patient to an appropriate next step. Communication with referrers occurs where clinically appropriate and with patient consent.</p>
+    </div>
+  </section>
+
+  <section class="rf-section is-guide" id="rf-guide">
+    <div class="rf-container rf-guide">
+      <div>
+        <p class="rf-eyebrow">Referrer guide</p>
+        <h2 class="rf-h2">IHL Clinical Referrer Guide.</h2>
+        <p class="rf-copy">A compact reference for practice details, referral pathways, clinical scope and the IHL team.</p>
+        <div class="rf-actions">
+          <a class="rf-button is-primary" href="REFERRER_GUIDE_URL" target="_blank" rel="noopener">Download guide</a>
+          <a class="rf-button" href="#gp_referral_form">Open online referral</a>
+        </div>
+      </div>
+      <div class="rf-guide-card">
+        <p class="rf-eyebrow">Inside the guide</p>
+        <h3 class="rf-h3">Clinical reference, not a brochure.</h3>
+        <ul>
+          <li>Practice overview and intake contact details.</li>
+          <li>HealthLink, online referral, email, phone and fax pathways.</li>
           <li>Presentations, approaches and funding pathways.</li>
-          <li>Clinical team overview.</li>
+          <li>Clinical team overview and areas of focus.</li>
         </ul>
       </div>
     </div>
@@ -522,11 +676,12 @@
     <div class="rf-container rf-support">
       <div>
         <h2 class="rf-h3">Intake support</h2>
-        <p class="rf-small">Monday to Friday, 9:00 am to 5:00 pm.</p>
+        <p class="rf-small">Monday to Friday, 9:00 am to 5:00 pm. Routine referrals only; use emergency pathways for immediate risk.</p>
       </div>
       <div class="rf-actions">
         <a class="rf-button" href="mailto:intake@institute4healthyliving.com">intake@institute4healthyliving.com</a>
         <a class="rf-button" href="tel:+61289370667">02 8937 0667</a>
+        <span class="rf-button">HealthLink: inshealh</span>
       </div>
     </div>
   </section>
@@ -538,14 +693,28 @@
     buttons.forEach(function (button) {
       button.addEventListener("click", function () {
         var text = button.getAttribute("data-rf-copy");
-        if (!text || !navigator.clipboard) return;
-        navigator.clipboard.writeText(text).then(function () {
+        if (!text) return;
+        function showCopied() {
           var previous = button.textContent;
           button.textContent = "Copied";
           window.setTimeout(function () {
             button.textContent = previous;
           }, 1400);
-        });
+        }
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(text).then(showCopied);
+          return;
+        }
+        var textarea = document.createElement("textarea");
+        textarea.value = text;
+        textarea.setAttribute("readonly", "");
+        textarea.style.position = "fixed";
+        textarea.style.left = "-9999px";
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand("copy");
+        textarea.remove();
+        showCopied();
       });
     });
   })();
