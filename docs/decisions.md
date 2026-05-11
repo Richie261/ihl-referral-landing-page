@@ -9,6 +9,7 @@
 - Public copy should not imply that a Mental Health Treatment Plan alone is the referral; it is a supporting document unless paired with a written referral.
 - Referrer details should stay minimal but sufficient to identify the referrer, contact them, and support referral validity where the online form itself is used as the referral.
 - Security must be explicit: clinical details and uploaded documents route only through the approved secure intake pathway in the live build.
+- Trustworthiness should be conveyed through clear intake ownership, privacy boundaries, restrained copy and separation of patient information from campaign metadata.
 - The page should feel like a calm professional referral reference, not a sales funnel or guided tour.
 - Avoid numbered process cards and heavy explanatory blocks unless they are required for clinical safety or form completion.
 - HealthLink EDI `inshealh` must remain easy to find and copy.
