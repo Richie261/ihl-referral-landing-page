@@ -49,12 +49,10 @@ Do not point the campaign to the page until the form destination, intake notific
 Build the Webflow page in this order:
 
 1. Hero: "Refer a patient to IHL."
-2. First-viewport referral details panel with HealthLink EDI `inshealh`.
-3. Clinical fit: concise copy on intake, clinician matching and care scope.
-4. Referral channels: HealthLink, online form, intake email, phone/fax.
-5. What to include in a referral.
-6. Referrer guide CTA.
-7. Footer strip with intake email, phone and HealthLink EDI.
+2. Compact other-ways-to-refer panel with HealthLink EDI `inshealh`, intake email, phone and fax.
+3. Online referral form directly on the page.
+4. Form sections: patient contact, referral basis, upload files, referrer details.
+5. Footer strip with intake email, phone and HealthLink EDI.
 
 HealthLink must be visible in the first viewport:
 
@@ -78,7 +76,7 @@ Do not include:
 Keep:
 
 - HealthLink EDI `inshealh`.
-- Online form.
+- Online form as the core experience.
 - Intake email.
 - Phone and fax.
 - Routine referral / not-for-emergency wording.
@@ -146,14 +144,14 @@ Final form should store these as hidden non-clinical fields. They can sync to Hu
 Use simple Webflow sections rather than overbuilding:
 
 - One main page.
-- Clean anchor links.
-- Clear CTA buttons.
+- One primary CTA: start the referral form.
 - Mobile-first check.
 - No complex animations required.
 - Keep HealthLink and intake contact details easy to copy.
 - Keep the page quiet and operational: more professional reference than marketing brochure.
+- Keep the form short by letting uploaded referral letters, MHTPs and specialist referrals carry the detailed clinical and Medicare content.
 - Prefer native Webflow sections if Max wants to maintain visually in Designer.
-- If speed matters, paste `webflow/referrals-landing-webflow-embed.html` into an Embed element above the existing GP referral form.
+- If speed matters, paste `webflow/referrals-landing-webflow-embed.html` into an Embed element and replace `SECURE_FORM_ENDPOINT`.
 - Replace `REFERRER_GUIDE_URL` with the uploaded Webflow asset URL for the referrer guide PDF.
 
 If using Webflow native forms for any non-clinical contact or request-guide action, confirm where submissions are stored and who receives notifications.
@@ -183,4 +181,4 @@ Official Webflow references checked on 2026-05-07:
 
 ## Message To Max
 
-Max, the page is ready to build as a restrained referrer landing page above the existing `/referrals` form. Use `/referrals` as canonical unless there is a live-site reason not to, and add `/refer` as a campaign-friendly redirect. Please present HealthLink, online form, intake email, phone and fax clearly so referrers can choose what works for them. Keep the page quiet, clinical and operational rather than card-heavy or sales-led. Route full clinical referral data to the approved secure intake workflow, and only pass referrer/campaign metadata to HubSpot.
+Max, the page is now form-first. Use `/referrals` as canonical unless there is a live-site reason not to, and add `/refer` as a campaign-friendly redirect. Please keep the top of page quiet and brief, then place the online referral form directly on the page. The form should ask patient contact details first, then referral basis, file uploads and referrer authority. Route full clinical referral data and attachments to the approved secure intake workflow, and only pass referrer/campaign metadata to HubSpot.

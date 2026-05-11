@@ -25,3 +25,9 @@ Purpose: keep a concise record of why the referrer landing page was simplified a
 - Keep clinical scope concise, using the referrer guide PDF for deeper detail.
 - Retain conservative emergency wording and avoid unapproved wait-time claims.
 
+## Sana Health Group Learning
+
+- The strongest part of Sana's referrals page is the simple path to action: arrive, understand the page is for healthcare professional referrals, then make a referral.
+- The weaker part is the long explanatory process section and a heavy embedded form. IHL should avoid the explanatory middle and invest in the form itself.
+- IHL direction after this review: a short doorway, compact referral options, then the form on the same page.
+- Form principle: patient contact details first, uploadable source documents second, referrer authority last.

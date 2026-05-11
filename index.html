@@ -6,7 +6,7 @@
     <title>Refer a Patient to IHL</title>
     <meta
       name="description"
-      content="Referral details for Institute for Healthy Living, including HealthLink EDI inshealh, online referral form, intake email, phone and fax."
+      content="A simple referrer form for Institute for Healthy Living, with HealthLink EDI, secure upload, patient contact details and referrer details."
     />
     <style>
       :root {
@@ -14,16 +14,16 @@
         --paper: #ffffff;
         --ink: #101412;
         --body: #3f4b45;
-        --muted: #657169;
-        --quiet: #8b948e;
+        --muted: #647169;
+        --quiet: #88938d;
         --line: #e1e5de;
         --line-strong: #cbd4cb;
         --green: #2d4f37;
         --green-deep: #123926;
         --sage: #edf3ed;
+        --sand: #d9c9aa;
         --mist: #eef3f4;
-        --clay: #8a765f;
-        --shadow: 0 22px 60px rgba(24, 35, 29, 0.08);
+        --danger: #7a2d27;
         --focus: 0 0 0 3px rgba(45, 79, 55, 0.18);
       }
 
@@ -43,16 +43,10 @@
           -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
           Inter, "Segoe UI", Arial, Helvetica, sans-serif;
         -webkit-font-smoothing: antialiased;
-        overflow-x: hidden;
       }
 
       a {
         color: inherit;
-      }
-
-      img {
-        display: block;
-        max-width: 100%;
       }
 
       h1,
@@ -62,23 +56,15 @@
         margin: 0;
       }
 
-      .shell {
-        min-height: 100vh;
-      }
-
       .topbar {
-        position: sticky;
-        top: 0;
-        z-index: 10;
-        border-bottom: 1px solid rgba(225, 229, 222, 0.9);
-        background: rgba(247, 248, 245, 0.94);
+        border-bottom: 1px solid var(--line);
+        background: rgba(247, 248, 245, 0.96);
         backdrop-filter: blur(14px);
       }
 
       .topbar-inner,
-      .section,
-      .footer-inner {
-        width: min(1160px, calc(100vw - 48px));
+      .page {
+        width: min(1120px, calc(100vw - 48px));
         margin: 0 auto;
       }
 
@@ -87,7 +73,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 20px;
+        gap: 18px;
       }
 
       .brand {
@@ -95,7 +81,6 @@
         display: flex;
         align-items: center;
         gap: 13px;
-        color: var(--ink);
         text-decoration: none;
       }
 
@@ -103,13 +88,13 @@
         width: 42px;
         height: 42px;
         flex: 0 0 auto;
-        border: 1px solid rgba(45, 79, 55, 0.14);
         border-radius: 9px;
         background: var(--green);
         overflow: hidden;
       }
 
-      .brand-logo {
+      .brand-mark img {
+        display: block;
         width: 100%;
         height: 100%;
         object-fit: cover;
@@ -123,7 +108,6 @@
       .brand strong {
         font-size: 15px;
         font-weight: 760;
-        letter-spacing: 0;
       }
 
       .brand span {
@@ -132,95 +116,50 @@
         font-size: 12px;
       }
 
-      .nav {
+      .top-actions {
         display: flex;
-        align-items: center;
-        gap: 18px;
-        color: #3f4b45;
-        font-size: 13px;
-        font-weight: 760;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 10px;
       }
 
-      .nav a {
-        text-decoration: none;
-      }
-
-      .nav a:hover {
-        color: var(--green);
-      }
-
-      .button,
-      .nav-cta,
+      .pill,
       .copy-button {
-        min-height: 42px;
+        min-height: 38px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
         border: 1px solid var(--line-strong);
         border-radius: 999px;
         background: var(--paper);
-        color: var(--ink);
-        padding: 0 16px;
-        text-decoration: none;
-        font: inherit;
-        font-size: 14px;
-        font-weight: 780;
-        line-height: 1;
-        cursor: pointer;
-        transition:
-          border-color 160ms ease,
-          background 160ms ease,
-          color 160ms ease,
-          transform 160ms ease;
-      }
-
-      .button:hover,
-      .nav-cta:hover,
-      .copy-button:hover {
-        transform: translateY(-1px);
-      }
-
-      .button.primary,
-      .nav-cta {
-        border-color: var(--green);
-        background: var(--green);
-        color: #fff;
-      }
-
-      .button.primary:hover,
-      .nav-cta:hover {
-        border-color: var(--green-deep);
-        background: var(--green-deep);
-        color: #fff;
-      }
-
-      .button.subtle {
-        border-color: rgba(45, 79, 55, 0.2);
-        background: #f9fbf8;
         color: var(--green);
+        padding: 0 14px;
+        font: inherit;
+        font-size: 13px;
+        font-weight: 760;
+        text-decoration: none;
+        cursor: pointer;
       }
 
+      .copy-button:focus-visible,
       .button:focus-visible,
-      .nav-cta:focus-visible,
-      .copy-button:focus-visible {
+      input:focus-visible,
+      select:focus-visible,
+      textarea:focus-visible {
         outline: none;
         box-shadow: var(--focus);
       }
 
-      .section {
-        padding-top: 76px;
-        padding-bottom: 76px;
+      .page {
+        padding: 58px 0 78px;
       }
 
-      .section.compact {
-        padding-top: 56px;
-        padding-bottom: 56px;
-      }
-
-      .band {
-        border-top: 1px solid var(--line);
-        border-bottom: 1px solid var(--line);
-        background: rgba(255, 255, 255, 0.62);
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(300px, 380px);
+        gap: 48px;
+        align-items: end;
+        padding-bottom: 42px;
       }
 
       .eyebrow {
@@ -231,838 +170,764 @@
         text-transform: uppercase;
       }
 
-      .hero {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) minmax(340px, 420px);
-        gap: 64px;
-        align-items: start;
-        padding-top: 72px;
-        padding-bottom: 72px;
-      }
-
       h1 {
         max-width: 720px;
-        margin-top: 18px;
-        color: #111411;
-        font-size: clamp(42px, 6vw, 72px);
+        margin-top: 16px;
+        font-size: clamp(42px, 6.2vw, 72px);
         font-weight: 720;
-        line-height: 0.98;
-        letter-spacing: 0;
+        line-height: 1;
       }
 
       .hero-copy {
-        max-width: 660px;
-        margin-top: 24px;
+        max-width: 690px;
+        margin-top: 22px;
         color: var(--body);
-        font-size: 19px;
+        font-size: 18px;
         line-height: 1.58;
       }
 
-      .hero-actions,
-      .inline-actions {
+      .hero-actions {
         display: flex;
         flex-wrap: wrap;
         gap: 12px;
+        margin-top: 28px;
       }
 
-      .hero-actions {
-        margin-top: 30px;
-      }
-
-      .notice {
-        max-width: 660px;
-        margin-top: 22px;
-        color: var(--muted);
-        font-size: 13px;
-        line-height: 1.5;
-      }
-
-      .proof-line {
-        max-width: 720px;
-        margin-top: 42px;
-        border-top: 1px solid var(--line);
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      .proof-line div {
-        padding: 18px 20px 0 0;
-      }
-
-      .proof-line strong,
-      .proof-line span {
-        display: block;
-      }
-
-      .proof-line strong {
+      .button {
+        min-height: 46px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--line-strong);
+        border-radius: 999px;
+        background: var(--paper);
+        color: var(--ink);
+        padding: 0 18px;
+        font: inherit;
         font-size: 14px;
         font-weight: 780;
+        text-decoration: none;
+        cursor: pointer;
       }
 
-      .proof-line span {
-        margin-top: 6px;
-        color: var(--muted);
-        font-size: 13px;
-        line-height: 1.42;
+      .button.primary {
+        border-color: var(--green);
+        background: var(--green);
+        color: #fff;
       }
 
-      .referral-panel {
+      .button.subtle {
+        color: var(--green);
+      }
+
+      .referral-card {
         border: 1px solid var(--line);
         border-radius: 12px;
         background: var(--paper);
-        box-shadow: var(--shadow);
         overflow: hidden;
       }
 
-      .panel-head {
-        padding: 26px 26px 22px;
+      .referral-card-head {
+        padding: 22px;
         border-bottom: 1px solid var(--line);
-        background: linear-gradient(180deg, #fff 0%, #fbfcfa 100%);
       }
 
-      .panel-head h2 {
-        margin-top: 12px;
-        font-size: 28px;
-        font-weight: 720;
-        line-height: 1.05;
-        letter-spacing: 0;
-      }
-
-      .edi-box {
-        margin-top: 18px;
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) auto;
-        gap: 10px;
-        align-items: center;
-      }
-
-      .edi-code {
-        min-width: 0;
-        border: 1px solid rgba(45, 79, 55, 0.22);
-        border-radius: 999px;
-        background: var(--sage);
-        padding: 13px 15px;
+      .referral-card-head strong {
+        display: block;
+        margin-top: 10px;
         color: var(--green);
-        font-size: 17px;
-        font-weight: 800;
-        letter-spacing: 0.04em;
-        text-align: center;
-        overflow-wrap: anywhere;
+        font-size: 22px;
+        line-height: 1.15;
       }
 
-      .copy-button {
-        min-height: 48px;
-        border-color: rgba(45, 79, 55, 0.24);
-        color: var(--green);
-      }
-
-      .detail-list {
-        padding: 8px 26px 10px;
+      .referral-card-body {
+        padding: 0 22px;
       }
 
       .detail-row {
         display: grid;
-        grid-template-columns: 130px minmax(0, 1fr);
-        gap: 16px;
+        grid-template-columns: 1fr;
+        gap: 6px;
         border-bottom: 1px solid var(--line);
-        padding: 18px 0;
+        padding: 16px 0;
       }
 
       .detail-row:last-child {
         border-bottom: 0;
       }
 
-      .detail-label {
+      .detail-row span {
         color: var(--quiet);
         font-size: 11px;
         font-weight: 850;
-        letter-spacing: 0.12em;
+        letter-spacing: 0.1em;
         text-transform: uppercase;
       }
 
-      .detail-row strong,
-      .detail-row span {
-        display: block;
-      }
-
       .detail-row strong {
-        font-size: 16px;
-        font-weight: 760;
-        line-height: 1.3;
-        overflow-wrap: anywhere;
-      }
-
-      .detail-row span {
-        margin-top: 5px;
-        color: var(--muted);
-        font-size: 13px;
-        line-height: 1.45;
-      }
-
-      .section-heading {
-        max-width: 800px;
-      }
-
-      .section-heading h2 {
-        margin-top: 12px;
-        font-size: clamp(30px, 4vw, 48px);
-        font-weight: 700;
-        line-height: 1.05;
-        letter-spacing: 0;
-      }
-
-      .section-heading p {
-        margin-top: 18px;
-        color: var(--body);
-        font-size: 17px;
-        line-height: 1.6;
-      }
-
-      .split {
-        display: grid;
-        grid-template-columns: minmax(0, 0.9fr) minmax(340px, 0.62fr);
-        gap: 62px;
-        align-items: start;
-      }
-
-      .quiet-panel {
-        border-left: 1px solid var(--line-strong);
-        padding-left: 28px;
-      }
-
-      .quiet-panel p {
-        color: var(--body);
-        font-size: 18px;
-        line-height: 1.62;
-      }
-
-      .quiet-list {
-        margin: 28px 0 0;
-        padding: 0;
-        list-style: none;
-        border-top: 1px solid var(--line);
-      }
-
-      .quiet-list li {
-        display: grid;
-        grid-template-columns: 170px minmax(0, 1fr);
-        gap: 18px;
-        border-bottom: 1px solid var(--line);
-        padding: 18px 0;
-      }
-
-      .quiet-list strong {
-        color: var(--ink);
-        font-size: 15px;
-        font-weight: 780;
-      }
-
-      .quiet-list span {
-        color: var(--muted);
-        font-size: 14px;
-        line-height: 1.5;
-      }
-
-      .channels {
-        margin-top: 34px;
-        border-top: 1px solid var(--line-strong);
-      }
-
-      .channel-row {
-        display: grid;
-        grid-template-columns: minmax(180px, 0.5fr) minmax(0, 1fr) auto;
-        gap: 22px;
-        align-items: center;
-        border-bottom: 1px solid var(--line);
-        padding: 22px 0;
-      }
-
-      .channel-row h3 {
-        font-size: 21px;
-        font-weight: 700;
-        letter-spacing: 0;
-      }
-
-      .channel-row p {
-        color: var(--muted);
-        font-size: 15px;
-        line-height: 1.48;
-      }
-
-      .channel-row p strong {
-        color: var(--ink);
-        overflow-wrap: anywhere;
-      }
-
-      .intake-grid {
-        margin-top: 34px;
-        display: grid;
-        grid-template-columns: repeat(5, minmax(0, 1fr));
-        border-top: 1px solid var(--line-strong);
-      }
-
-      .intake-item {
-        min-width: 0;
-        border-right: 1px solid var(--line);
-        border-bottom: 1px solid var(--line);
-        padding: 20px 18px 20px 0;
-      }
-
-      .intake-item:last-child {
-        border-right: 0;
-      }
-
-      .intake-item strong,
-      .intake-item span {
         display: block;
+        font-size: 14px;
+        font-weight: 760;
+        line-height: 1.35;
+        overflow-wrap: anywhere;
       }
 
-      .intake-item strong {
-        font-size: 15px;
-        font-weight: 780;
+      .form-shell {
+        border-top: 1px solid var(--line);
+        padding-top: 42px;
       }
 
-      .intake-item span {
-        margin-top: 8px;
-        color: var(--muted);
-        font-size: 13px;
-        line-height: 1.45;
+      .form-intro {
+        display: grid;
+        grid-template-columns: minmax(0, 0.86fr) minmax(280px, 0.42fr);
+        gap: 44px;
+        align-items: start;
+        margin-bottom: 26px;
       }
 
-      .after-note {
-        margin-top: 32px;
-        max-width: 860px;
-        border-left: 3px solid var(--green);
-        background: var(--mist);
-        padding: 20px 22px;
-        color: #34453e;
-        font-size: 15px;
+      .form-intro h2 {
+        margin-top: 10px;
+        font-size: clamp(30px, 4vw, 46px);
+        font-weight: 700;
+        line-height: 1.06;
+      }
+
+      .form-intro p {
+        margin-top: 16px;
+        color: var(--body);
+        font-size: 16px;
         line-height: 1.58;
       }
 
-      .guide {
-        border-top: 1px solid var(--line);
-        background: var(--paper);
-      }
-
-      .guide-layout {
+      .principles {
         display: grid;
-        grid-template-columns: minmax(0, 0.9fr) minmax(320px, 0.46fr);
-        gap: 44px;
-        align-items: start;
-      }
-
-      .guide-box {
-        border: 1px solid var(--line);
-        border-radius: 12px;
-        padding: 26px;
-        background: #fbfcfa;
-      }
-
-      .guide-box h3 {
-        margin-top: 12px;
-        font-size: 24px;
-        font-weight: 700;
-        line-height: 1.1;
-        letter-spacing: 0;
-      }
-
-      .guide-box ul {
-        margin: 18px 0 0;
-        padding: 0;
-        list-style: none;
-        border-top: 1px solid var(--line);
-      }
-
-      .guide-box li {
-        border-bottom: 1px solid var(--line);
-        padding: 11px 0;
-        color: var(--muted);
-        font-size: 14px;
-        line-height: 1.45;
-      }
-
-      .footer {
-        background: var(--green-deep);
-        color: #fff;
-      }
-
-      .footer-inner {
-        min-height: 118px;
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) auto;
-        gap: 24px;
-        align-items: center;
-        padding-top: 24px;
-        padding-bottom: 24px;
-      }
-
-      .footer strong,
-      .footer span {
-        display: block;
-      }
-
-      .footer strong {
-        font-size: 16px;
-      }
-
-      .footer span {
-        margin-top: 6px;
-        color: rgba(255, 255, 255, 0.72);
-        font-size: 13px;
-        line-height: 1.5;
-      }
-
-      .footer-links {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-end;
         gap: 10px;
       }
 
-      .footer-link {
-        min-height: 42px;
-        display: inline-flex;
-        align-items: center;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 999px;
-        padding: 0 14px;
-        color: #fff;
-        text-decoration: none;
+      .principle {
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.74);
+        padding: 14px;
+      }
+
+      .principle strong,
+      .principle span {
+        display: block;
+      }
+
+      .principle strong {
+        font-size: 14px;
+      }
+
+      .principle span {
+        margin-top: 5px;
+        color: var(--muted);
         font-size: 13px;
-        font-weight: 720;
+        line-height: 1.4;
+      }
+
+      form {
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: var(--paper);
+        overflow: hidden;
+      }
+
+      .form-section {
+        display: grid;
+        grid-template-columns: 260px minmax(0, 1fr);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .form-section:last-of-type {
+        border-bottom: 0;
+      }
+
+      .section-side {
+        border-right: 1px solid var(--line);
+        background: #fbfcfa;
+        padding: 24px;
+      }
+
+      .section-side h3 {
+        font-size: 22px;
+        font-weight: 700;
+      }
+
+      .section-side p {
+        margin-top: 10px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.48;
+      }
+
+      .section-body {
+        padding: 24px;
+      }
+
+      .field-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .field {
+        min-width: 0;
+      }
+
+      .field.full {
+        grid-column: 1 / -1;
+      }
+
+      label {
+        display: block;
+        color: #35423b;
+        font-size: 13px;
+        font-weight: 780;
+      }
+
+      label small {
+        color: var(--quiet);
+        font-size: 12px;
+        font-weight: 650;
+      }
+
+      input,
+      select,
+      textarea {
+        width: 100%;
+        margin-top: 8px;
+        border: 1px solid var(--line-strong);
+        border-radius: 8px;
+        background: #fcfdfb;
+        color: var(--ink);
+        font: inherit;
+        font-size: 15px;
+      }
+
+      input,
+      select {
+        min-height: 46px;
+        padding: 0 12px;
+      }
+
+      textarea {
+        min-height: 116px;
+        padding: 12px;
+        line-height: 1.48;
+        resize: vertical;
+      }
+
+      input[type="file"] {
+        min-height: auto;
+        border-style: dashed;
+        padding: 16px;
+        background: var(--sage);
+      }
+
+      input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        min-height: auto;
+        margin: 0;
+        flex: 0 0 auto;
+      }
+
+      .helper {
+        margin-top: 6px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.4;
+      }
+
+      .check-row {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fbfcfa;
+        padding: 14px;
+      }
+
+      .check-row label {
+        margin: 0;
+        line-height: 1.45;
+      }
+
+      .file-note {
+        margin-top: 12px;
+        border-left: 3px solid var(--green);
+        background: var(--mist);
+        padding: 12px 14px;
+        color: #35453d;
+        font-size: 13px;
+        line-height: 1.45;
+      }
+
+      .risk-note {
+        margin-top: 14px;
+        border-left: 3px solid var(--danger);
+        background: #f8eeee;
+        padding: 12px 14px;
+        color: var(--danger);
+        font-size: 13px;
+        line-height: 1.45;
+      }
+
+      .form-footer {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 18px;
+        align-items: center;
+        border-top: 1px solid var(--line);
+        background: #fbfcfa;
+        padding: 22px 24px;
+      }
+
+      .form-footer p {
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.45;
+      }
+
+      .submit-button {
+        min-height: 50px;
+        border: 1px solid var(--green);
+        border-radius: 999px;
+        background: var(--green);
+        color: #fff;
+        padding: 0 24px;
+        font: inherit;
+        font-size: 15px;
+        font-weight: 800;
+        cursor: pointer;
+      }
+
+      .confirmation {
+        display: none;
+        margin-top: 18px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: var(--paper);
+        padding: 20px;
+      }
+
+      .confirmation.is-visible {
+        display: block;
+      }
+
+      .confirmation h2 {
+        color: var(--green);
+        font-size: 24px;
+      }
+
+      .confirmation p {
+        margin-top: 8px;
+        color: var(--body);
+        font-size: 15px;
+        line-height: 1.5;
+      }
+
+      .fine-print {
+        margin-top: 18px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.5;
       }
 
       .page-footer {
-        padding: 26px 24px;
+        border-top: 1px solid var(--line);
+        padding: 28px 24px;
         color: var(--muted);
         text-align: center;
         font-size: 13px;
         line-height: 1.5;
       }
 
-      @media (max-width: 980px) {
-        .nav {
-          display: none;
-        }
-
+      @media (max-width: 900px) {
         .hero,
-        .split,
-        .guide-layout {
+        .form-intro,
+        .form-section {
           grid-template-columns: 1fr;
         }
 
-        .proof-line,
-        .intake-grid {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-
-        .intake-item:nth-child(2n) {
+        .section-side {
           border-right: 0;
+          border-bottom: 1px solid var(--line);
         }
 
-        .quiet-panel {
-          border-left: 0;
-          border-top: 1px solid var(--line-strong);
-          padding-left: 0;
-          padding-top: 28px;
-        }
-
-        .channel-row {
-          grid-template-columns: minmax(170px, 0.48fr) minmax(0, 1fr);
-        }
-
-        .channel-row .button,
-        .channel-row .copy-button {
-          grid-column: 2;
-          width: fit-content;
+        .top-actions {
+          display: none;
         }
       }
 
       @media (max-width: 680px) {
         .topbar-inner,
-        .section,
-        .footer-inner {
+        .page {
           width: min(100vw, 430px);
           padding-left: 18px;
           padding-right: 18px;
         }
 
-        .section {
-          padding-top: 58px;
-          padding-bottom: 58px;
-        }
-
-        .hero {
-          gap: 38px;
-          padding-top: 46px;
+        .page {
+          padding-top: 40px;
           padding-bottom: 58px;
         }
 
         h1 {
-          max-width: calc(100vw - 36px);
           font-size: 42px;
-          line-height: 1;
         }
 
-        .hero-copy,
-        .section-heading p,
-        .quiet-panel p {
-          font-size: 16px;
+        .hero {
+          gap: 28px;
         }
 
         .hero-actions,
-        .inline-actions,
-        .footer-links {
-          display: grid;
+        .field-grid,
+        .form-footer {
           grid-template-columns: 1fr;
+          display: grid;
         }
 
         .button,
-        .nav-cta,
-        .copy-button,
-        .footer-link {
+        .submit-button {
           width: 100%;
-          white-space: normal;
-          text-align: center;
         }
 
-        .proof-line,
-        .edi-box,
-        .detail-row,
-        .quiet-list li,
-        .channel-row,
-        .intake-grid,
-        .footer-inner {
+        .section-side,
+        .section-body,
+        .form-footer {
+          padding: 20px;
+        }
+
+        .detail-row {
           grid-template-columns: 1fr;
-        }
-
-        .proof-line div {
-          padding-right: 0;
-          border-bottom: 1px solid var(--line);
-          padding-bottom: 16px;
-        }
-
-        .detail-list {
-          padding-left: 20px;
-          padding-right: 20px;
-        }
-
-        .panel-head {
-          padding-left: 20px;
-          padding-right: 20px;
-        }
-
-        .detail-row,
-        .channel-row {
-          gap: 10px;
-        }
-
-        .channel-row .button,
-        .channel-row .copy-button {
-          grid-column: auto;
-          width: 100%;
-        }
-
-        .intake-item,
-        .intake-item:nth-child(2n) {
-          border-right: 0;
-          padding-right: 0;
-        }
-
-        .footer-links {
-          justify-content: stretch;
+          gap: 6px;
         }
       }
     </style>
   </head>
   <body>
-    <div class="shell">
-      <header class="topbar">
-        <div class="topbar-inner">
-          <a class="brand" href="#" aria-label="Institute for Healthy Living">
-            <span class="brand-mark" aria-hidden="true">
-              <img class="brand-logo" src="assets/ihl-logo.png" alt="" />
-            </span>
-            <span>
-              <strong>Institute for Healthy Living</strong>
-              <span>Healthcare professional referrals</span>
-            </span>
-          </a>
-          <nav class="nav" aria-label="Referrer page navigation">
-            <a href="#referral-details">Referral details</a>
-            <a href="#clinical-fit">Clinical fit</a>
-            <a href="#include">What to include</a>
-            <a href="#guide">Guide</a>
-            <a class="nav-cta" href="online-referral-form-v1.html" data-attribution-link>Online referral</a>
-          </nav>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="#" aria-label="Institute for Healthy Living">
+          <span class="brand-mark" aria-hidden="true">
+            <img src="assets/ihl-logo.png" alt="" />
+          </span>
+          <span>
+            <strong>Institute for Healthy Living</strong>
+            <span>Healthcare professional referrals</span>
+          </span>
+        </a>
+        <div class="top-actions" aria-label="Quick referral details">
+          <button class="copy-button" type="button" data-copy="inshealh">HealthLink: inshealh</button>
+          <a class="pill" href="tel:+61289370667">02 8937 0667</a>
         </div>
-      </header>
+      </div>
+    </header>
 
-      <main>
-        <section class="section hero" id="referral-details">
+    <main class="page">
+      <section class="hero">
+        <div>
+          <div class="eyebrow">Referral form</div>
+          <h1>Refer a patient to IHL.</h1>
+          <p class="hero-copy">
+            A clean referral pathway for health professionals. Start with the patient details intake needs to call, email or text, then add the referral basis, supporting documents and referrer authority.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#referral-form">Start referral</a>
+            <a class="button subtle" href="assets/ihl-referrer-guide.pdf" download>Referrer guide</a>
+          </div>
+        </div>
+
+        <aside class="referral-card" aria-label="Other referral options">
+          <div class="referral-card-head">
+            <div class="eyebrow">Other ways to refer</div>
+            <strong>Use the channel that already fits your workflow.</strong>
+          </div>
+          <div class="referral-card-body">
+            <div class="detail-row">
+              <span>HealthLink</span>
+              <strong>Institute for Healthy Living<br />EDI: inshealh</strong>
+            </div>
+            <div class="detail-row">
+              <span>Email</span>
+              <strong><a href="mailto:intake@institute4healthyliving.com">intake@institute4healthyliving.com</a></strong>
+            </div>
+            <div class="detail-row">
+              <span>Phone/fax</span>
+              <strong>02 8937 0667<br />Fax 02 8072 3963</strong>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="form-shell" id="referral-form">
+        <div class="form-intro">
           <div>
-            <div class="eyebrow">For health professionals</div>
-            <h1>Refer a patient to IHL.</h1>
-            <p class="hero-copy">
-              A clear referral pathway into evidence-based psychological care. IHL reviews each referral for presentation, complexity and clinician fit, with care available from Bondi Junction and via secure telehealth.
-            </p>
-            <div class="hero-actions">
-              <a class="button primary" href="online-referral-form-v1.html" data-attribution-link>Open online referral</a>
-              <a class="button subtle" href="#channels">Referral channels</a>
-              <a class="button" href="mailto:intake@institute4healthyliving.com">Email intake</a>
-            </div>
-            <p class="notice">
-              Routine referrals are reviewed during business hours. This page is not for emergencies or acute crisis care. If there is immediate risk, please use emergency or acute-care pathways.
-            </p>
-            <div class="proof-line" aria-label="IHL referral principles">
-              <div>
-                <strong>Clinical matching</strong>
-                <span>Referral review considers age, presentation, risk, complexity and clinician expertise.</span>
-              </div>
-              <div>
-                <strong>Collaborative care</strong>
-                <span>Relevant updates can be shared with treating teams where appropriate and with consent.</span>
-              </div>
-              <div>
-                <strong>Established practice</strong>
-                <span>AHPRA-registered clinicians supporting adults, young people, couples and families.</span>
-              </div>
-            </div>
-          </div>
-
-          <aside class="referral-panel" aria-label="Referral contact details">
-            <div class="panel-head">
-              <div class="eyebrow">Referral details</div>
-              <h2>Send a referral through the channel that suits your workflow.</h2>
-              <div class="edi-box">
-                <div class="edi-code">HealthLink EDI: inshealh</div>
-                <button class="copy-button" type="button" data-copy="inshealh" aria-label="Copy HealthLink EDI code">Copy</button>
-              </div>
-            </div>
-            <div class="detail-list">
-              <div class="detail-row">
-                <div class="detail-label">HealthLink</div>
-                <div>
-                  <strong>Institute for Healthy Living</strong>
-                  <span>Use EDI inshealh from compatible clinical software.</span>
-                </div>
-              </div>
-              <div class="detail-row">
-                <div class="detail-label">Online</div>
-                <div>
-                  <strong><a href="online-referral-form-v1.html" data-attribution-link>Secure online referral form</a></strong>
-                  <span>Submit referral details and supporting documents.</span>
-                </div>
-              </div>
-              <div class="detail-row">
-                <div class="detail-label">Email</div>
-                <div>
-                  <strong><a href="mailto:intake@institute4healthyliving.com">intake@institute4healthyliving.com</a></strong>
-                  <span>For referral questions or supporting information.</span>
-                </div>
-              </div>
-              <div class="detail-row">
-                <div class="detail-label">Phone / fax</div>
-                <div>
-                  <strong>02 8937 0667 / 02 8072 3963</strong>
-                  <span>Reception is available Monday to Friday, 9:00 am to 5:00 pm.</span>
-                </div>
-              </div>
-            </div>
-          </aside>
-        </section>
-
-        <section class="band" id="clinical-fit">
-          <div class="section split">
-            <div class="section-heading">
-              <div class="eyebrow">Clinical fit</div>
-              <h2>Thoughtful intake, matched to the right clinician.</h2>
-              <p>
-                IHL provides clinical psychology care across a broad range of presentations. Referrals are considered through a clinical lens, so the next step is appropriate for the patient and practical for the referrer.
-              </p>
-            </div>
-            <div class="quiet-panel">
-              <p>
-                The right match matters. Intake uses the information provided to help identify clinician availability, therapeutic fit, appointment mode and any additional context needed before care begins.
-              </p>
-              <ul class="quiet-list">
-                <li>
-                  <strong>Who we support</strong>
-                  <span>Adults, adolescents, children, couples, parents and families.</span>
-                </li>
-                <li>
-                  <strong>Referral contexts</strong>
-                  <span>Anxiety, mood, trauma, relationships, parenting, eating concerns, OCD, ADHD, grief, adjustment and complex comorbidity.</span>
-                </li>
-                <li>
-                  <strong>Care approaches</strong>
-                  <span>CBT, DBT, Schema Therapy, EMDR, ACT and other evidence-based approaches matched to clinician expertise.</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        <section class="section" id="channels">
-          <div class="section-heading">
-            <div class="eyebrow">Referral channels</div>
-            <h2>All referral pathways are available.</h2>
+            <div class="eyebrow">Secure online referral</div>
+            <h2>Minimum friction, enough clinical context.</h2>
             <p>
-              Use the option that works best for your practice. HealthLink, online referral, email, phone and fax all lead back to the intake team.
+              If a signed referral letter, specialist referral, or supporting Mental Health Treatment Plan is uploaded, this form should not make the referrer re-type the full document. If the form itself is the referral, the declaration and referral fields capture the essentials needed for intake and Medicare-supported pathways.
             </p>
           </div>
-          <div class="channels" aria-label="Referral channels">
-            <div class="channel-row">
-              <h3>HealthLink eReferral</h3>
-              <p>Search <strong>Institute for Healthy Living</strong> or use HealthLink EDI <strong>inshealh</strong>.</p>
-              <button class="copy-button" type="button" data-copy="inshealh">Copy EDI</button>
+          <div class="principles" aria-label="Form design principles">
+            <div class="principle">
+              <strong>Patient contact first</strong>
+              <span>Mobile, email and preferred contact method are treated as core intake fields.</span>
             </div>
-            <div class="channel-row">
-              <h3>Online referral form</h3>
-              <p>Complete referral details and attach supporting documents through the online form.</p>
-              <a class="button primary" href="online-referral-form-v1.html" data-attribution-link>Open form</a>
+            <div class="principle">
+              <strong>Documents do the heavy lifting</strong>
+              <span>Referrers can upload referral letters, MHTPs, plans or reports instead of duplicating content.</span>
             </div>
-            <div class="channel-row">
-              <h3>Intake email</h3>
-              <p>Email <strong>intake@institute4healthyliving.com</strong> for referral questions or supporting information.</p>
-              <a class="button" href="mailto:intake@institute4healthyliving.com">Email intake</a>
-            </div>
-            <div class="channel-row">
-              <h3>Phone or fax</h3>
-              <p>Call <strong>02 8937 0667</strong> or fax referral documents to <strong>02 8072 3963</strong>.</p>
-              <a class="button" href="tel:+61289370667">Call reception</a>
+            <div class="principle">
+              <strong>Referrer authority last</strong>
+              <span>Provider details, date and electronic declaration support a valid referral record.</span>
             </div>
           </div>
-        </section>
+        </div>
 
-        <section class="band" id="include">
-          <div class="section">
-            <div class="section-heading">
-              <div class="eyebrow">What to include</div>
-              <h2>Information that helps intake move well.</h2>
-              <p>
-                A concise referral is enough when it includes the clinical details needed to understand fit, urgency and the most appropriate next step.
-              </p>
+        <form id="ihl-referral-form" action="#" method="post" enctype="multipart/form-data">
+          <section class="form-section" aria-labelledby="patient-heading">
+            <div class="section-side">
+              <h3 id="patient-heading">Patient contact</h3>
+              <p>Core details for intake to contact the patient, guardian or referrer quickly and safely.</p>
             </div>
-            <div class="intake-grid">
-              <div class="intake-item">
-                <strong>Patient details</strong>
-                <span>Name, date of birth, phone, email and guardian details where relevant.</span>
-              </div>
-              <div class="intake-item">
-                <strong>Reason for referral</strong>
-                <span>Presenting concerns, functional impact and what support is being requested.</span>
-              </div>
-              <div class="intake-item">
-                <strong>Urgency and risk</strong>
-                <span>Any safeguarding, complexity or urgency information intake should know early.</span>
-              </div>
-              <div class="intake-item">
-                <strong>Funding and documents</strong>
-                <span>MHTP, private, NDIS, insurance, WorkCover, DVA or reports if available.</span>
-              </div>
-              <div class="intake-item">
-                <strong>Preferences</strong>
-                <span>Clinician, appointment mode, language, gender or scheduling needs where clinically relevant.</span>
+            <div class="section-body">
+              <div class="field-grid">
+                <div class="field">
+                  <label for="patient-name">Patient full name *</label>
+                  <input id="patient-name" name="patient_name" autocomplete="name" required />
+                </div>
+                <div class="field">
+                  <label for="patient-dob">Date of birth *</label>
+                  <input id="patient-dob" name="patient_dob" type="date" required />
+                </div>
+                <div class="field">
+                  <label for="patient-mobile">Mobile for calls or SMS *</label>
+                  <input id="patient-mobile" name="patient_mobile" type="tel" autocomplete="tel" required />
+                </div>
+                <div class="field">
+                  <label for="patient-email">Email *</label>
+                  <input id="patient-email" name="patient_email" type="email" autocomplete="email" required />
+                </div>
+                <div class="field">
+                  <label for="preferred-contact">Preferred first contact *</label>
+                  <select id="preferred-contact" name="preferred_contact" required>
+                    <option value="">Select one</option>
+                    <option>Phone call</option>
+                    <option>SMS</option>
+                    <option>Email</option>
+                    <option>Contact referrer first</option>
+                    <option>Parent or guardian</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="patient-address">Address or suburb <small>if not in uploaded referral</small></label>
+                  <input id="patient-address" name="patient_address" autocomplete="street-address" />
+                  <p class="helper">For Medicare supported referrals, patient address is needed if it is not already on the attached referral.</p>
+                </div>
+                <div class="field full">
+                  <label for="guardian">Parent, guardian or alternate contact <small>if relevant</small></label>
+                  <input id="guardian" name="guardian_contact" />
+                </div>
+                <div class="field full">
+                  <div class="check-row">
+                    <input id="patient-aware" name="patient_aware" type="checkbox" required />
+                    <label for="patient-aware">The patient, parent or guardian is aware of this referral and IHL may contact them about intake. *</label>
+                  </div>
+                </div>
               </div>
             </div>
-            <p class="after-note">
-              After a referral is received, intake reviews the information, clarifies anything missing where needed, and helps direct the patient to an appropriate next step. Communication with referrers occurs where clinically appropriate and with patient consent.
+          </section>
+
+          <section class="form-section" aria-labelledby="basis-heading">
+            <div class="section-side">
+              <h3 id="basis-heading">Referral basis</h3>
+              <p>Enough information for intake to understand clinical fit, urgency and funding pathway.</p>
+            </div>
+            <div class="section-body">
+              <div class="field-grid">
+                <div class="field">
+                  <label for="referral-type">Referral pathway *</label>
+                  <select id="referral-type" name="referral_type" required>
+                    <option value="">Select one</option>
+                    <option>GP Mental Health Treatment Plan</option>
+                    <option>Psychiatrist referral</option>
+                    <option>Paediatrician referral</option>
+                    <option>Private or self-funded</option>
+                    <option>NDIS</option>
+                    <option>WorkCover or SIRA</option>
+                    <option>DVA or insurance</option>
+                    <option>Corporate or EAP</option>
+                    <option>Unsure or other</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="document-status">Referral document status *</label>
+                  <select id="document-status" name="document_status" required>
+                    <option value="">Select one</option>
+                    <option>I am uploading a signed referral, specialist letter or supporting plan</option>
+                    <option>This online form is the referral</option>
+                    <option>I will send documents separately</option>
+                  </select>
+                </div>
+                <div class="field full">
+                  <label for="presenting-concerns">Reason for referral / presenting concerns *</label>
+                  <textarea id="presenting-concerns" name="presenting_concerns" required></textarea>
+                  <p class="helper">A short summary is enough when the referral letter or plan is attached.</p>
+                </div>
+                <div class="field">
+                  <label for="urgency">Urgency and risk *</label>
+                  <select id="urgency" name="urgency" required>
+                    <option value="">Select one</option>
+                    <option>Routine referral</option>
+                    <option>Soon, but not acute</option>
+                    <option>Risk or complexity to flag</option>
+                    <option>Immediate risk or crisis</option>
+                  </select>
+                  <p class="helper">Immediate risk or crisis should use emergency or acute-care pathways.</p>
+                </div>
+                <div class="field">
+                  <label for="services-requested">Sessions requested <small>Medicare, if not in attachment</small></label>
+                  <select id="services-requested" name="services_requested">
+                    <option value="">Select if relevant</option>
+                    <option>Initial course, up to 6 services</option>
+                    <option>Subsequent course, remaining services up to annual cap</option>
+                    <option>Specified in attached referral</option>
+                    <option>Not applicable</option>
+                  </select>
+                </div>
+                <div class="field full">
+                  <label for="medications">Current medications or relevant clinical notes <small>if not in attachment</small></label>
+                  <textarea id="medications" name="medications"></textarea>
+                </div>
+              </div>
+              <div class="risk-note">
+                This form is reviewed during business hours and is not an emergency pathway.
+              </div>
+            </div>
+          </section>
+
+          <section class="form-section" aria-labelledby="files-heading">
+            <div class="section-side">
+              <h3 id="files-heading">Upload files</h3>
+              <p>Attach the document that already exists, rather than rebuilding it inside the form.</p>
+            </div>
+            <div class="section-body">
+              <div class="field-grid">
+                <div class="field full">
+                  <label for="attachments">Referral documents <small>optional but encouraged</small></label>
+                  <input
+                    id="attachments"
+                    name="attachments"
+                    type="file"
+                    multiple
+                    accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.heic"
+                  />
+                  <p class="helper">Referral letter, MHTP, psychiatrist or paediatrician letter, Medicare plan, insurer/workplace document, reports or assessments.</p>
+                </div>
+              </div>
+              <div class="file-note">
+                A signed referral, plus any supporting plan, can carry the detailed Medicare and clinical requirements. The form remains short so referrers can submit what they already have.
+              </div>
+            </div>
+          </section>
+
+          <section class="form-section" aria-labelledby="referrer-heading">
+            <div class="section-side">
+              <h3 id="referrer-heading">Referrer details</h3>
+              <p>Minimum details needed to identify and contact the referrer, with provider fields available where Medicare or other funding requires them.</p>
+            </div>
+            <div class="section-body">
+              <div class="field-grid">
+                <div class="field">
+                  <label for="referrer-name">Referrer full name *</label>
+                  <input id="referrer-name" name="referrer_name" autocomplete="name" required />
+                </div>
+                <div class="field">
+                  <label for="referrer-role">Profession / role *</label>
+                  <input id="referrer-role" name="referrer_role" placeholder="GP, psychiatrist, paediatrician, psychologist" required />
+                </div>
+                <div class="field">
+                  <label for="organisation">Practice or organisation *</label>
+                  <input id="organisation" name="organisation" required />
+                </div>
+                <div class="field">
+                  <label for="referrer-email">Referrer email *</label>
+                  <input id="referrer-email" name="referrer_email" type="email" autocomplete="email" required />
+                </div>
+                <div class="field">
+                  <label for="referrer-phone">Referrer phone *</label>
+                  <input id="referrer-phone" name="referrer_phone" type="tel" autocomplete="tel" required />
+                </div>
+                <div class="field">
+                  <label for="provider-number">Provider number / EDI / AHPRA <small>if relevant</small></label>
+                  <input id="provider-number" name="provider_number" />
+                </div>
+                <div class="field full">
+                  <label for="practice-address">Practice address <small>if not in uploaded referral</small></label>
+                  <input id="practice-address" name="practice_address" />
+                </div>
+                <div class="field full">
+                  <div class="check-row">
+                    <input id="referrer-declaration" name="referrer_declaration" type="checkbox" required />
+                    <label for="referrer-declaration">I confirm I am authorised to make this referral. If this online form is used as the referral, this submission identifies me as the referrer and records my approval electronically. *</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <input type="hidden" name="utm_source" data-attribution-input="utm_source" />
+          <input type="hidden" name="utm_medium" data-attribution-input="utm_medium" />
+          <input type="hidden" name="utm_campaign" data-attribution-input="utm_campaign" />
+          <input type="hidden" name="landing_page" data-attribution-input="landing_page" />
+          <input type="hidden" name="submitted_date" data-submitted-date />
+
+          <div class="form-footer">
+            <p>
+              Prototype only: final build needs approved secure form handling, file storage, intake notifications and privacy controls before real submissions are accepted.
             </p>
+            <button class="submit-button" type="submit">Submit referral</button>
           </div>
-        </section>
+        </form>
 
-        <section class="section guide" id="guide">
-          <div class="guide-layout">
-            <div class="section-heading">
-              <div class="eyebrow">Referrer guide</div>
-              <h2>IHL Clinical Referrer Guide.</h2>
-              <p>
-                A compact reference for practice details, referral pathways, clinical scope and the IHL team.
-              </p>
-              <div class="inline-actions" style="margin-top: 28px">
-                <a class="button primary" href="assets/ihl-referrer-guide.pdf" download>Download guide</a>
-                <a class="button" href="online-referral-form-v1.html" data-attribution-link>Open online referral</a>
-              </div>
-            </div>
-            <div class="guide-box" aria-label="Referrer guide contents">
-              <div class="eyebrow">Inside the guide</div>
-              <h3>Clinical reference, not a brochure.</h3>
-              <ul>
-                <li>Practice overview and intake contact details.</li>
-                <li>HealthLink, online referral, email, phone and fax pathways.</li>
-                <li>Presentations, approaches and funding pathways.</li>
-                <li>Clinical team overview and areas of focus.</li>
-              </ul>
-            </div>
-          </div>
-        </section>
+        <aside class="confirmation" id="confirmation" tabindex="-1">
+          <h2>Referral ready for intake.</h2>
+          <p>This prototype has validated the form structure. In the live build, this confirmation would appear after secure submission and intake notification.</p>
+        </aside>
 
-        <section class="footer" aria-label="Intake support">
-          <div class="footer-inner">
-            <div>
-              <strong>Intake support</strong>
-              <span>Monday to Friday, 9:00 am to 5:00 pm. Routine referrals only; use emergency pathways for immediate risk.</span>
-            </div>
-            <div class="footer-links">
-              <a class="footer-link" href="mailto:intake@institute4healthyliving.com">intake@institute4healthyliving.com</a>
-              <a class="footer-link" href="tel:+61289370667">02 8937 0667</a>
-              <span class="footer-link">HealthLink: inshealh</span>
-            </div>
-          </div>
-        </section>
-      </main>
+        <p class="fine-print">
+          Medicare-supported referrals may require a written, signed and dated referral with patient details, symptoms or diagnosis, medications where relevant, services requested and plan status. Uploading the source referral and any supporting plan is the cleanest way to preserve this without adding friction.
+        </p>
+      </section>
+    </main>
 
-      <footer class="page-footer">
-        Institute for Healthy Living | Suite 306, 3 Waverley Street, Bondi Junction NSW 2022 | Fax 02 8072 3963
-      </footer>
-    </div>
+    <footer class="page-footer">
+      Institute for Healthy Living | Suite 306, 3 Waverley Street, Bondi Junction NSW 2022 | HealthLink EDI: inshealh
+    </footer>
 
     <script>
       function getCampaignAttribution() {
-        const allowedParams = [
-          "utm_source",
-          "utm_medium",
-          "utm_campaign",
-          "utm_content",
-          "utm_term",
-          "gclid",
-          "fbclid",
-          "msclkid",
-          "campaign",
-          "source",
-          "ref",
-        ];
         const current = new URLSearchParams(window.location.search);
-        const attribution = new URLSearchParams();
-
-        allowedParams.forEach((key) => {
-          const value = current.get(key);
-          if (value) attribution.set(key, value);
-        });
-
-        if (!attribution.has("utm_source")) attribution.set("utm_source", "ihl_referrer_campaign");
-        if (!attribution.has("utm_medium")) attribution.set("utm_medium", "landing_page");
-        if (!attribution.has("utm_campaign")) attribution.set("utm_campaign", "referrer_growth_2026");
-        attribution.set("landing_page", window.location.pathname || "/referrals");
-
-        return attribution;
+        return {
+          utm_source: current.get("utm_source") || current.get("source") || "ihl_referrer_campaign",
+          utm_medium: current.get("utm_medium") || "landing_page",
+          utm_campaign: current.get("utm_campaign") || current.get("campaign") || "referrer_growth_2026",
+          landing_page: window.location.pathname || "/referrals",
+        };
       }
 
-      function appendAttributionToFormLinks() {
-        const attribution = getCampaignAttribution();
+      const attribution = getCampaignAttribution();
+      document.querySelectorAll("[data-attribution-input]").forEach((input) => {
+        input.value = attribution[input.dataset.attributionInput] || "";
+      });
 
-        document.querySelectorAll("[data-attribution-link]").forEach((link) => {
-          if (!link.getAttribute("href").includes("online-referral-form-v1.html")) return;
-
-          const destination = new URL(link.getAttribute("href"), window.location.href);
-          attribution.forEach((value, key) => {
-            destination.searchParams.set(key, value);
-          });
-          link.href = `online-referral-form-v1.html${destination.search}${destination.hash}`;
-        });
-      }
+      const submittedDate = document.querySelector("[data-submitted-date]");
+      if (submittedDate) submittedDate.value = new Date().toISOString();
 
       async function copyValue(button) {
         const value = button.dataset.copy;
@@ -1091,7 +956,12 @@
         button.addEventListener("click", () => copyValue(button));
       });
 
-      appendAttributionToFormLinks();
+      document.getElementById("ihl-referral-form").addEventListener("submit", (event) => {
+        event.preventDefault();
+        const confirmation = document.getElementById("confirmation");
+        confirmation.classList.add("is-visible");
+        confirmation.focus();
+      });
     </script>
   </body>
 </html>

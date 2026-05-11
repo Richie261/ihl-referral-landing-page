@@ -3,7 +3,11 @@
 ## Current Direction
 
 - The referrer landing page is the active priority. Broader site-wide brand work is useful background, but not the current build focus.
-- The page should show all referral pathways clearly so referrers can choose what works for them.
+- The page should now be form-first. The public experience is a calm doorway into the referral form, not a full landing-page brochure.
+- The form should prioritise patient contact details first: name, date of birth, mobile, email, preferred contact and guardian details where relevant.
+- The form should allow signed referral letters, Mental Health Treatment Plans, specialist referrals, Medicare plans, insurance/workplace documents and reports to be uploaded without forcing referrers to duplicate the same content.
+- Public copy should not imply that a Mental Health Treatment Plan alone is the referral; it is a supporting document unless paired with a written referral.
+- Referrer details should stay minimal but sufficient to identify the referrer, contact them, and support referral validity where the online form itself is used as the referral.
 - The page should feel like a calm professional referral reference, not a sales funnel or guided tour.
 - Avoid numbered process cards and heavy explanatory blocks unless they are required for clinical safety or form completion.
 - HealthLink EDI `inshealh` must remain easy to find and copy.

@@ -10,9 +10,9 @@ https://richie261.github.io/ihl-referral-landing-page/
 
 Current active focus: the referrer landing page.
 
-This page is designed to give GPs, psychiatrists, paediatricians, and other healthcare referrers a fast, simple way to understand how to refer to IHL.
+This page is designed to give GPs, psychiatrists, paediatricians, and other healthcare referrers a fast, simple way to refer to IHL.
 
-The current direction is restrained and operational: a calm professional referral reference rather than a sales-led funnel.
+The current direction is restrained and form-first: a calm doorway into the referral form, not a sales-led funnel.
 
 The page presents all referral pathways clearly so referrers can choose what works for them:
 
