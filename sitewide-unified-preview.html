@@ -1,0 +1,839 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>IHL Unified Website Direction</title>
+    <meta
+      name="description"
+      content="A unified website direction for Institute for Healthy Living: right-fit clinician matching, evidence-based care, online and in-person therapy, and clear referral pathways."
+    />
+    <style>
+      @font-face {
+        font-family: "IHL Calibre";
+        src: url("https://cdn.prod.website-files.com/66fb6bc216ae048b2c95647d/66fcaa0e78c0ee5e8bc7ae42_calibre-regular.woff2") format("woff2");
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "IHL Calibre";
+        src: url("https://cdn.prod.website-files.com/66fb6bc216ae048b2c95647d/66fcaa0e1cf4be73e7d07b78_calibre-semibold.woff2") format("woff2");
+        font-weight: 600;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "IHL Family";
+        src: url("https://cdn.prod.website-files.com/66fb6bc216ae048b2c95647d/6707a294f1029b432bc69860_family-regular.woff2") format("woff2");
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      :root {
+        --green: #2d4f37;
+        --green-dark: #114733;
+        --light: #f7f8f5;
+        --paper: #ffffff;
+        --ink: #111111;
+        --muted: #4a4a4a;
+        --soft: #e8f0ea;
+        --line: #e2e6df;
+        --gold: #edb525;
+        --radius: 18px;
+        --font-body: "IHL Calibre", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        --font-display: "IHL Family", Georgia, serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: var(--light);
+        color: var(--ink);
+        font-family: var(--font-body);
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+
+      .site-shell {
+        min-height: 100vh;
+      }
+
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        border-bottom: 1px solid color-mix(in srgb, var(--green) 18%, transparent);
+        background: color-mix(in srgb, var(--light) 88%, transparent);
+        backdrop-filter: blur(16px);
+      }
+
+      .nav-inner,
+      .section-inner {
+        width: min(100%, 1280px);
+        margin: 0 auto;
+        padding-left: 32px;
+        padding-right: 32px;
+      }
+
+      .nav-inner {
+        min-height: 78px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .brand {
+        min-width: 0;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: var(--green);
+        text-decoration: none;
+      }
+
+      .brand-mark {
+        width: 44px;
+        height: 44px;
+        flex: 0 0 auto;
+        border-radius: 10px;
+        overflow: hidden;
+        background: var(--green);
+      }
+
+      .brand strong {
+        display: block;
+        color: var(--ink);
+        font-size: 17px;
+        font-weight: 600;
+        line-height: 1.05;
+      }
+
+      .brand span {
+        display: block;
+        margin-top: 2px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 22px;
+        color: var(--green);
+        font-size: 15px;
+        font-weight: 600;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+      }
+
+      .button,
+      .chip {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid color-mix(in srgb, var(--green) 22%, transparent);
+        border-radius: 999px;
+        background: var(--paper);
+        color: var(--green);
+        padding: 0 18px;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 1;
+      }
+
+      .button.primary {
+        border-color: var(--green);
+        background: var(--green);
+        color: #fff;
+      }
+
+      .button:hover {
+        border-color: var(--green-dark);
+        background: var(--green-dark);
+        color: #fff;
+      }
+
+      .section {
+        border-bottom: 1px solid var(--line);
+        padding: 86px 0;
+      }
+
+      .section.white {
+        background: var(--paper);
+      }
+
+      .hero {
+        min-height: min(760px, calc(100vh - 78px));
+        display: grid;
+        align-items: center;
+        padding: 76px 0 64px;
+      }
+
+      .hero-grid,
+      .split-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(360px, 0.58fr);
+        gap: 64px;
+        align-items: center;
+      }
+
+      .eyebrow {
+        margin-bottom: 18px;
+        color: var(--green);
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: .16em;
+        text-transform: uppercase;
+      }
+
+      .h1,
+      .h2,
+      .h3 {
+        font-family: var(--font-display);
+        font-weight: 400;
+        letter-spacing: 0;
+      }
+
+      .h1 {
+        max-width: 780px;
+        color: var(--ink);
+        font-size: clamp(56px, 8vw, 112px);
+        line-height: .88;
+      }
+
+      .h2 {
+        max-width: 860px;
+        color: var(--ink);
+        font-size: clamp(42px, 5.6vw, 76px);
+        line-height: .92;
+      }
+
+      .h3 {
+        color: var(--ink);
+        font-size: clamp(28px, 3vw, 40px);
+        line-height: .98;
+      }
+
+      .lead {
+        max-width: 720px;
+        margin-top: 24px;
+        color: var(--muted);
+        font-size: 24px;
+        line-height: 1.32;
+      }
+
+      .copy {
+        color: var(--muted);
+        font-size: 18px;
+        line-height: 1.5;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 30px;
+      }
+
+      .hero-media {
+        position: relative;
+        min-height: 580px;
+        border-radius: 48% 48% var(--radius) var(--radius);
+        overflow: hidden;
+        background: var(--soft);
+      }
+
+      .hero-media img,
+      .image-panel img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .hero-card {
+        position: absolute;
+        left: 28px;
+        right: 28px;
+        bottom: 28px;
+        border: 1px solid color-mix(in srgb, var(--green) 16%, transparent);
+        border-radius: 16px;
+        background: color-mix(in srgb, white 88%, transparent);
+        padding: 22px;
+        backdrop-filter: blur(14px);
+      }
+
+      .hero-card strong {
+        display: block;
+        color: var(--green);
+        font-size: 18px;
+        font-weight: 600;
+      }
+
+      .hero-card span {
+        display: block;
+        margin-top: 8px;
+        color: var(--muted);
+        font-size: 16px;
+        line-height: 1.4;
+      }
+
+      .pill-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 28px;
+      }
+
+      .chip {
+        min-height: 38px;
+        background: color-mix(in srgb, white 78%, transparent);
+        font-size: 14px;
+      }
+
+      .section-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 36px;
+        align-items: end;
+        margin-bottom: 34px;
+      }
+
+      .section-head .copy {
+        max-width: 430px;
+      }
+
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .cards.four {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .card {
+        min-height: 260px;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--paper);
+        padding: 28px;
+      }
+
+      .card.soft {
+        background: color-mix(in srgb, var(--green) 4%, white);
+      }
+
+      .card-number {
+        margin-bottom: auto;
+        color: var(--green);
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: .12em;
+      }
+
+      .card .h3 {
+        margin-top: 56px;
+      }
+
+      .card .copy {
+        margin-top: 14px;
+      }
+
+      .image-panel {
+        min-height: 520px;
+        border-radius: var(--radius);
+        overflow: hidden;
+        background: var(--soft);
+      }
+
+      .pathways {
+        display: grid;
+        grid-template-columns: .9fr 1.1fr;
+        gap: 18px;
+        align-items: stretch;
+      }
+
+      .pathway-rail {
+        border-radius: var(--radius);
+        background: var(--green);
+        color: #fff;
+        padding: 34px;
+      }
+
+      .pathway-rail .h2,
+      .pathway-rail .copy {
+        color: #fff;
+      }
+
+      .pathway-rail .copy {
+        opacity: .78;
+      }
+
+      .pathway-list {
+        display: grid;
+        gap: 12px;
+      }
+
+      .pathway-item {
+        display: grid;
+        grid-template-columns: 46px 1fr auto;
+        gap: 16px;
+        align-items: center;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: var(--paper);
+        padding: 18px;
+      }
+
+      .pathway-index {
+        width: 46px;
+        height: 46px;
+        display: grid;
+        place-items: center;
+        border-radius: 10px;
+        background: color-mix(in srgb, var(--green) 8%, white);
+        color: var(--green);
+        font-weight: 600;
+      }
+
+      .pathway-item strong {
+        display: block;
+        color: var(--ink);
+        font-size: 20px;
+        font-weight: 600;
+      }
+
+      .pathway-item span {
+        display: block;
+        margin-top: 3px;
+        color: var(--muted);
+        font-size: 16px;
+        line-height: 1.35;
+      }
+
+      .team-strip {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 34px;
+      }
+
+      .team-card {
+        min-height: 230px;
+        border: 1px solid var(--line);
+        border-radius: 999px 999px 16px 16px;
+        background: color-mix(in srgb, var(--green) 6%, white);
+        padding: 22px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+      }
+
+      .team-card strong {
+        display: block;
+        color: var(--ink);
+        font-size: 18px;
+        font-weight: 600;
+      }
+
+      .team-card span {
+        display: block;
+        margin-top: 4px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .footer {
+        background: var(--green);
+        color: #fff;
+        padding: 54px 0;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 30px;
+        align-items: start;
+      }
+
+      .footer a {
+        text-decoration: none;
+      }
+
+      .footer .copy,
+      .footer .brand span {
+        color: color-mix(in srgb, white 74%, transparent);
+      }
+
+      .footer .brand strong {
+        color: #fff;
+      }
+
+      @media (max-width: 980px) {
+        .nav-links {
+          display: none;
+        }
+
+        .hero-grid,
+        .split-grid,
+        .pathways,
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .cards,
+        .cards.four,
+        .team-strip {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .hero-media {
+          min-height: 460px;
+        }
+      }
+
+      @media (max-width: 680px) {
+        .nav-inner,
+        .section-inner {
+          padding-left: 18px;
+          padding-right: 18px;
+        }
+
+        .section,
+        .hero {
+          padding-top: 58px;
+          padding-bottom: 58px;
+        }
+
+        .brand span {
+          display: none;
+        }
+
+        .nav-inner > .button {
+          display: none;
+        }
+
+        .h1 {
+          font-size: 58px;
+        }
+
+        .h2 {
+          font-size: 42px;
+        }
+
+        .lead {
+          font-size: 20px;
+        }
+
+        .section-head,
+        .actions {
+          display: grid;
+        }
+
+        .button {
+          width: 100%;
+        }
+
+        .cards,
+        .cards.four,
+        .team-strip {
+          grid-template-columns: 1fr;
+        }
+
+        .pathway-item {
+          grid-template-columns: 42px 1fr;
+        }
+
+        .pathway-item .button {
+          grid-column: 1 / -1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="nav">
+        <div class="nav-inner">
+          <a class="brand" href="#" aria-label="Institute for Healthy Living">
+            <img class="brand-mark" src="assets/ihl-logo.png" alt="" />
+            <div>
+              <strong>Institute for Healthy Living</strong>
+              <span>Clinical psychology in Bondi Junction and online</span>
+            </div>
+          </a>
+          <nav class="nav-links" aria-label="Website preview navigation">
+            <a href="#care">Care</a>
+            <a href="#services">Services</a>
+            <a href="#team">Team</a>
+            <a href="#referrals">Referrals</a>
+            <a href="#fees">Fees</a>
+          </nav>
+          <a class="button primary" href="#support">Book an appointment</a>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero">
+          <div class="section-inner hero-grid">
+            <div>
+              <div class="eyebrow">A unified IHL website direction</div>
+              <h1 class="h1">Psychological care matched to you.</h1>
+              <p class="lead">
+                Evidence-based therapy in Bondi Junction and online, with thoughtful clinician matching and a calmer path into care.
+              </p>
+              <div class="actions">
+                <a class="button primary" href="#support">Book an appointment</a>
+                <a class="button" href="#team">Meet the team</a>
+              </div>
+              <div class="pill-row" aria-label="Core brand pillars">
+                <span class="chip">Right-fit matching</span>
+                <span class="chip">Evidence-based care</span>
+                <span class="chip">Online and in person</span>
+                <span class="chip">Long-term wellbeing</span>
+              </div>
+            </div>
+            <div class="hero-media">
+              <img
+                src="https://cdn.prod.website-files.com/66fb6bc216ae048b2c95647d/6798b0ceaf5229c79e7798f5_hero%20image%2028jan.avif"
+                alt="IHL therapy room"
+              />
+              <div class="hero-card">
+                <strong>Good therapy starts with fit.</strong>
+                <span>Intake helps match each client with a psychologist whose expertise, approach and availability suit their needs.</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section white" id="care">
+          <div class="section-inner">
+            <div class="section-head">
+              <div>
+                <div class="eyebrow">The Healthy Living Way</div>
+                <h2 class="h2">A warmer, clearer system for every page.</h2>
+              </div>
+              <p class="copy">
+                The site should repeat the same promise in different contexts: fit, evidence, access and connection.
+              </p>
+            </div>
+            <div class="cards four">
+              <article class="card soft">
+                <span class="card-number">01</span>
+                <h3 class="h3">Connection</h3>
+                <p class="copy">Therapy feels safer when the clinician, modality and pace are a thoughtful fit.</p>
+              </article>
+              <article class="card">
+                <span class="card-number">02</span>
+                <h3 class="h3">Evidence</h3>
+                <p class="copy">Treatment is grounded in research-backed modalities and tailored to the person.</p>
+              </article>
+              <article class="card">
+                <span class="card-number">03</span>
+                <h3 class="h3">Access</h3>
+                <p class="copy">Care is available through Bondi Junction rooms and secure telehealth.</p>
+              </article>
+              <article class="card">
+                <span class="card-number">04</span>
+                <h3 class="h3">Clarity</h3>
+                <p class="copy">Pages guide people to the right next step without overexplaining.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="services">
+          <div class="section-inner split-grid">
+            <div>
+              <div class="eyebrow">Services</div>
+              <h2 class="h2">One service architecture, repeated cleanly.</h2>
+              <p class="lead">
+                Adults, children, adolescents, couples, families, groups and assessments all sit under the same message: evidence-based care matched to need.
+              </p>
+              <div class="actions">
+                <a class="button primary" href="#support">Explore support</a>
+                <a class="button" href="#fees">View fees</a>
+              </div>
+            </div>
+            <div class="image-panel">
+              <img
+                src="https://cdn.prod.website-files.com/66fb6bc216ae048b2c95647d/674ff6adc927df09386a628f_ouroffering3.avif"
+                alt="Calm therapy setting"
+              />
+            </div>
+          </div>
+        </section>
+
+        <section class="section white">
+          <div class="section-inner">
+            <div class="section-head">
+              <div>
+                <div class="eyebrow">Core pathways</div>
+                <h2 class="h2">Clear entry points for different audiences.</h2>
+              </div>
+              <p class="copy">Each page should know who it is for and what action belongs there.</p>
+            </div>
+            <div class="cards">
+              <article class="card">
+                <span class="card-number">Clients</span>
+                <h3 class="h3">Get support</h3>
+                <p class="copy">Book an appointment and get matched with the right therapist for your needs.</p>
+              </article>
+              <article class="card soft">
+                <span class="card-number">Referrers</span>
+                <h3 class="h3">Refer a patient</h3>
+                <p class="copy">Use HealthLink, online form, intake email, phone or fax.</p>
+              </article>
+              <article class="card">
+                <span class="card-number">Clinicians</span>
+                <h3 class="h3">Join the team</h3>
+                <p class="copy">A professional practice environment built around people, care and clinical quality.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="team">
+          <div class="section-inner">
+            <div class="section-head">
+              <div>
+                <div class="eyebrow">Team</div>
+                <h2 class="h2">Find your fit becomes the organising idea.</h2>
+              </div>
+              <p class="copy">Clinician search, bios and filters should reinforce matching by focus area, modality and availability.</p>
+            </div>
+            <div class="team-strip" aria-label="Team card direction">
+              <article class="team-card"><strong>Clinical Psychologist</strong><span>Trauma, anxiety, EMDR</span></article>
+              <article class="team-card"><strong>Psychologist</strong><span>Adults, mood, ACT</span></article>
+              <article class="team-card"><strong>Clinical Psychologist</strong><span>Children, families, assessments</span></article>
+              <article class="team-card"><strong>Psychologist</strong><span>Relationships, grief, CBT</span></article>
+              <article class="team-card"><strong>Intake team</strong><span>Matching and next steps</span></article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section white" id="referrals">
+          <div class="section-inner pathways">
+            <div class="pathway-rail">
+              <div class="eyebrow">Referrals</div>
+              <h2 class="h2">Refer a patient to IHL.</h2>
+              <p class="lead">
+                A referrer page should feel clinical, direct and easy to use, while still belonging to the same IHL brand.
+              </p>
+            </div>
+            <div class="pathway-list">
+              <div class="pathway-item">
+                <div class="pathway-index">01</div>
+                <div><strong>HealthLink</strong><span>Search Institute for Healthy Living or use EDI inshealh.</span></div>
+                <a class="button" href="#">Copy EDI</a>
+              </div>
+              <div class="pathway-item">
+                <div class="pathway-index">02</div>
+                <div><strong>Online referral form</strong><span>Complete, attach and submit through the secure form.</span></div>
+                <a class="button" href="#">Open form</a>
+              </div>
+              <div class="pathway-item">
+                <div class="pathway-index">03</div>
+                <div><strong>Intake email</strong><span>Use intake support for complex or unclear fit.</span></div>
+                <a class="button" href="mailto:intake@institute4healthyliving.com">Email intake</a>
+              </div>
+              <div class="pathway-item">
+                <div class="pathway-index">04</div>
+                <div><strong>Phone or fax</strong><span>Call 02 8937 0667 or fax 02 8072 3963.</span></div>
+                <a class="button" href="tel:+61289370667">Call</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="fees">
+          <div class="section-inner">
+            <div class="section-head">
+              <div>
+                <div class="eyebrow">Practical pages</div>
+                <h2 class="h2">Fees, policies and FAQs should feel plain and settled.</h2>
+              </div>
+              <p class="copy">Operational pages build trust when they are precise, consistent and easy to scan.</p>
+            </div>
+            <div class="cards four">
+              <article class="card"><span class="card-number">Fees</span><h3 class="h3">Rebates</h3><p class="copy">Use one approved explanation for Medicare, private health and payment.</p></article>
+              <article class="card"><span class="card-number">Policy</span><h3 class="h3">Cancellation</h3><p class="copy">Resolve the policy once, then update every page and FAQ.</p></article>
+              <article class="card"><span class="card-number">Hours</span><h3 class="h3">Availability</h3><p class="copy">Separate reception, consulting and intake review hours.</p></article>
+              <article class="card soft"><span class="card-number">SEO</span><h3 class="h3">CMS pages</h3><p class="copy">Use repeatable metadata formulas for concerns, treatments and team pages.</p></article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section white" id="support">
+          <div class="section-inner split-grid">
+            <div>
+              <div class="eyebrow">Next step</div>
+              <h2 class="h2">Make every path feel calm and obvious.</h2>
+              <p class="lead">The unified site should help people know what to do next, whether they are seeking therapy, comparing services, reading about a modality, or referring a patient.</p>
+              <div class="actions">
+                <a class="button primary" href="https://www.institute4healthyliving.com/get-support">Book an appointment</a>
+                <a class="button" href="https://www.institute4healthyliving.com/referrals">Refer a patient</a>
+              </div>
+            </div>
+            <div class="card soft">
+              <span class="card-number">Message spine</span>
+              <h3 class="h3">Right fit. Evidence-based care. Online and in person. Long-term wellbeing.</h3>
+              <p class="copy">This is the line every page should point back to, in language suited to its audience.</p>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <div class="section-inner footer-grid">
+          <a class="brand" href="#">
+            <img class="brand-mark" src="assets/ihl-logo.png" alt="" />
+            <div>
+              <strong>Institute for Healthy Living</strong>
+              <span>Suite 306, 3 Waverley Street, Bondi Junction NSW 2022</span>
+            </div>
+          </a>
+          <p class="copy">
+            info@institute4healthyliving.com<br />
+            02 8937 0667<br />
+            HealthLink EDI: inshealh
+          </p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

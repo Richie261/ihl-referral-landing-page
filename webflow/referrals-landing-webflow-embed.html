@@ -1,0 +1,552 @@
+<!--
+  IHL referrer landing sections for Webflow.
+  Paste this block above the existing GP referral form embed on /referrals.
+  Keep the existing site nav/footer. Replace REFERRER_GUIDE_URL after uploading the PDF to Webflow assets.
+-->
+<style>
+  .rf-page {
+    --rf-green: var(--swatch--green, #2d4f37);
+    --rf-green-dark: #114733;
+    --rf-light: #f7f8f5;
+    --rf-border: #e2e6df;
+    --rf-muted: #4a4a4a;
+    --rf-white: #ffffff;
+    color: var(--rf-green);
+    background: var(--rf-light);
+    font-family: var(--font--primary-family, inherit);
+  }
+
+  .rf-page * {
+    box-sizing: border-box;
+  }
+
+  .rf-section {
+    padding: 6rem 2.5rem;
+    border-bottom: 1px solid var(--rf-border);
+    background: var(--rf-light);
+  }
+
+  .rf-section.is-white {
+    background: var(--rf-white);
+  }
+
+  .rf-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .rf-hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(360px, 420px);
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .rf-eyebrow {
+    margin: 0 0 1rem;
+    color: var(--rf-green);
+    font-size: .75rem;
+    font-weight: 600;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+  }
+
+  .rf-h1,
+  .rf-h2,
+  .rf-h3 {
+    margin: 0;
+    color: #111111;
+    font-family: var(--font--secondary-family, inherit);
+    font-weight: 400;
+    letter-spacing: -.035em;
+  }
+
+  .rf-h1 {
+    max-width: 760px;
+    font-size: clamp(3.5rem, 7vw, 6rem);
+    line-height: .95;
+  }
+
+  .rf-h2 {
+    max-width: 760px;
+    font-size: clamp(2.4rem, 4.8vw, 4.5rem);
+    line-height: .96;
+  }
+
+  .rf-h3 {
+    font-size: clamp(1.45rem, 2.2vw, 2rem);
+    line-height: 1;
+  }
+
+  .rf-copy {
+    max-width: 690px;
+    margin: 1.35rem 0 0;
+    color: var(--rf-muted);
+    font-size: 1.25rem;
+    line-height: 1.45;
+  }
+
+  .rf-small {
+    color: var(--rf-muted);
+    font-size: .95rem;
+    line-height: 1.55;
+  }
+
+  .rf-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .85rem;
+    margin-top: 2rem;
+  }
+
+  .rf-button {
+    min-height: 3rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(45, 79, 55, .22);
+    border-radius: 999px;
+    background: var(--rf-white);
+    color: var(--rf-green);
+    padding: 0 1.35rem;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .rf-button.is-primary {
+    border-color: var(--rf-green);
+    background: var(--rf-green);
+    color: var(--rf-white);
+  }
+
+  .rf-button:hover {
+    border-color: var(--rf-green-dark);
+    background: var(--rf-green-dark);
+    color: var(--rf-white);
+  }
+
+  .rf-note {
+    margin-top: 1.4rem;
+    color: var(--rf-muted);
+    font-size: .95rem;
+    line-height: 1.45;
+  }
+
+  .rf-panel {
+    border: 1px solid rgba(45, 79, 55, .16);
+    border-radius: 18px;
+    background: var(--rf-white);
+    overflow: hidden;
+  }
+
+  .rf-panel-head {
+    padding: 2rem;
+    border-bottom: 1px solid var(--rf-border);
+  }
+
+  .rf-code-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: .85rem;
+    margin-top: 1.4rem;
+  }
+
+  .rf-code {
+    min-height: 3.25rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(45, 79, 55, .24);
+    border-radius: 999px;
+    background: rgba(45, 79, 55, .05);
+    color: var(--rf-green);
+    padding: 0 1.2rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: .02em;
+  }
+
+  .rf-panel-body {
+    display: grid;
+    gap: .85rem;
+    padding: 1.4rem;
+  }
+
+  .rf-route {
+    display: grid;
+    grid-template-columns: 2.35rem 1fr;
+    gap: 1rem;
+    align-items: start;
+    border: 1px solid var(--rf-border);
+    border-radius: 12px;
+    padding: 1rem;
+    background: var(--rf-white);
+  }
+
+  .rf-route-number {
+    width: 2.35rem;
+    height: 2.35rem;
+    display: grid;
+    place-items: center;
+    border-radius: 8px;
+    background: rgba(45, 79, 55, .07);
+    color: var(--rf-green);
+    font-weight: 600;
+  }
+
+  .rf-grid-2,
+  .rf-grid-3,
+  .rf-grid-4 {
+    display: grid;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .rf-grid-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .rf-grid-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .rf-grid-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .rf-card {
+    border: 1px solid var(--rf-border);
+    border-radius: 14px;
+    background: var(--rf-white);
+    padding: 1.4rem;
+  }
+
+  .rf-card.is-featured {
+    border-color: rgba(45, 79, 55, .28);
+    background: linear-gradient(180deg, rgba(45, 79, 55, .04), #ffffff 72%);
+  }
+
+  .rf-card-kicker {
+    display: block;
+    margin-bottom: 1rem;
+    color: var(--rf-green);
+    font-size: .78rem;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+
+  .rf-card p,
+  .rf-route p {
+    margin: .75rem 0 0;
+    color: var(--rf-muted);
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .rf-card p strong,
+  .rf-route p strong {
+    overflow-wrap: anywhere;
+  }
+
+  .rf-warning {
+    margin-top: 1.5rem;
+    border: 1px solid rgba(237, 181, 37, .42);
+    border-radius: 12px;
+    background: #fffaf0;
+    padding: 1rem 1.25rem;
+    color: #59400f;
+    font-size: .95rem;
+    line-height: 1.5;
+  }
+
+  .rf-guide {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .rf-guide-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: .75rem;
+  }
+
+  .rf-guide-list li {
+    border-bottom: 1px solid var(--rf-border);
+    padding-bottom: .75rem;
+    color: var(--rf-muted);
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+
+  .rf-support {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: center;
+    border-radius: 18px;
+    background: var(--rf-green);
+    color: var(--rf-white);
+    padding: 2rem;
+  }
+
+  .rf-support .rf-h3,
+  .rf-support .rf-small {
+    color: var(--rf-white);
+  }
+
+  .rf-support .rf-small {
+    opacity: .78;
+  }
+
+  @media (max-width: 991px) {
+    .rf-hero-grid,
+    .rf-guide {
+      grid-template-columns: 1fr;
+    }
+
+    .rf-grid-3,
+    .rf-grid-4 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 700px) {
+    .rf-section {
+      padding: 4.5rem 1.25rem;
+    }
+
+    .rf-h1 {
+      font-size: 3rem;
+      line-height: 1;
+    }
+
+    .rf-h2 {
+      font-size: 2.35rem;
+      line-height: 1;
+    }
+
+    .rf-copy {
+      font-size: 1.1rem;
+    }
+
+    .rf-actions,
+    .rf-support {
+      display: grid;
+    }
+
+    .rf-button,
+    .rf-code {
+      width: 100%;
+    }
+
+    .rf-code-row,
+    .rf-grid-2,
+    .rf-grid-3,
+    .rf-grid-4 {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<div class="rf-page">
+  <section class="rf-section">
+    <div class="rf-container rf-hero-grid">
+      <div>
+        <div class="rf-eyebrow">IHL Referrals</div>
+        <h1 class="rf-h1">Refer a patient to IHL.</h1>
+        <p class="rf-copy">Clinical psychology in Bondi Junction and via secure telehealth. Evidence-based care for adults, adolescents and children across everyday wellbeing and complex presentations.</p>
+        <div class="rf-actions">
+          <a class="rf-button is-primary" href="#rf-how-to-refer">How to refer</a>
+          <a class="rf-button" href="#gp_referral_form">Start online referral</a>
+          <a class="rf-button" href="mailto:intake@institute4healthyliving.com">Talk to intake</a>
+        </div>
+        <p class="rf-note">Reviewed during business hours. Not for emergencies or acute crisis care. If there is immediate risk, use emergency or acute-care pathways.</p>
+      </div>
+
+      <aside class="rf-panel" aria-label="Primary referral details">
+        <div class="rf-panel-head">
+          <div class="rf-eyebrow">Referral details</div>
+          <h2 class="rf-h2">How to refer</h2>
+          <div class="rf-code-row">
+            <button class="rf-code" type="button" data-rf-copy="inshealh" aria-label="Copy HealthLink EDI code">inshealh</button>
+            <a class="rf-button" href="#rf-how-to-refer">Options</a>
+          </div>
+        </div>
+        <div class="rf-panel-body">
+          <div class="rf-route">
+            <div class="rf-route-number">1</div>
+            <div>
+              <h3 class="rf-h3">HealthLink</h3>
+              <p>Search Institute for Healthy Living or use EDI <strong>inshealh</strong>.</p>
+            </div>
+          </div>
+          <div class="rf-route">
+            <div class="rf-route-number">2</div>
+            <div>
+              <h3 class="rf-h3">Online form</h3>
+              <p>Complete, attach and submit using the secure referral form.</p>
+            </div>
+          </div>
+          <div class="rf-route">
+            <div class="rf-route-number">3</div>
+            <div>
+              <h3 class="rf-h3">Intake support</h3>
+              <p>Email intake or call reception for referral questions.</p>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="rf-section is-white" id="rf-why">
+    <div class="rf-container">
+      <div class="rf-eyebrow">Why refer to IHL</div>
+      <h2 class="rf-h2">Comprehensive intake and clinician matching.</h2>
+      <div class="rf-grid-4">
+        <article class="rf-card">
+          <h3 class="rf-h3">Comprehensive intake</h3>
+          <p>Structured review supports matching by presentation, complexity, age and clinical fit.</p>
+        </article>
+        <article class="rf-card">
+          <h3 class="rf-h3">Clinical depth</h3>
+          <p>AHPRA-registered psychologists supporting adults, adolescents, children, couples and families.</p>
+        </article>
+        <article class="rf-card">
+          <h3 class="rf-h3">Evidence-based care</h3>
+          <p>CBT, DBT, Schema Therapy, EMDR, ACT and other modality-informed approaches.</p>
+        </article>
+        <article class="rf-card">
+          <h3 class="rf-h3">Continuity</h3>
+          <p>Clinically relevant communication with treating teams where appropriate and with consent.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="rf-section" id="rf-how-to-refer">
+    <div class="rf-container">
+      <div class="rf-eyebrow">How to refer</div>
+      <h2 class="rf-h2">Choose the pathway that works for you.</h2>
+      <div class="rf-grid-2">
+        <article class="rf-card is-featured">
+          <span class="rf-card-kicker">01</span>
+          <h3 class="rf-h3">HealthLink eReferral</h3>
+          <p>Search Institute for Healthy Living or use HealthLink EDI <strong>inshealh</strong>.</p>
+          <div class="rf-actions"><button class="rf-button is-primary" type="button" data-rf-copy="inshealh">Copy EDI</button></div>
+        </article>
+        <article class="rf-card">
+          <span class="rf-card-kicker">02</span>
+          <h3 class="rf-h3">Online referral form</h3>
+          <p>Complete, attach and submit using the secure online referral form.</p>
+          <div class="rf-actions"><a class="rf-button" href="#gp_referral_form">Open form</a></div>
+        </article>
+        <article class="rf-card">
+          <span class="rf-card-kicker">03</span>
+          <h3 class="rf-h3">Intake email</h3>
+          <p>Email <strong>intake@institute4healthyliving.com</strong>. Monitored Monday to Friday, 9 am to 5 pm.</p>
+          <div class="rf-actions"><a class="rf-button" href="mailto:intake@institute4healthyliving.com">Email intake</a></div>
+        </article>
+        <article class="rf-card">
+          <span class="rf-card-kicker">04</span>
+          <h3 class="rf-h3">Phone or fax</h3>
+          <p>Call <strong>02 8937 0667</strong> or fax referral documents to <strong>02 8072 3963</strong>.</p>
+          <div class="rf-actions"><a class="rf-button" href="tel:+61289370667">Call reception</a></div>
+        </article>
+      </div>
+      <div class="rf-warning">Not for emergency or crisis referrals. If there is immediate risk, use emergency or acute-care pathways.</div>
+    </div>
+  </section>
+
+  <section class="rf-section is-white">
+    <div class="rf-container">
+      <div class="rf-eyebrow">What to include</div>
+      <h2 class="rf-h2">Referral details.</h2>
+      <div class="rf-grid-3">
+        <article class="rf-card"><span class="rf-card-kicker">01</span><h3 class="rf-h3">Patient details</h3><p>Name, date of birth, phone, email and parent or guardian details where relevant.</p></article>
+        <article class="rf-card"><span class="rf-card-kicker">02</span><h3 class="rf-h3">Reason for referral</h3><p>A brief summary of presenting concerns, functional impact and what support is being requested.</p></article>
+        <article class="rf-card"><span class="rf-card-kicker">03</span><h3 class="rf-h3">Urgency and risk</h3><p>Immediate risk, complexity, safeguarding or urgency concerns intake should know early.</p></article>
+        <article class="rf-card"><span class="rf-card-kicker">04</span><h3 class="rf-h3">Funding pathway</h3><p>MHTP, private, NDIS, insurance, WorkCover, DVA or other pathway if known.</p></article>
+        <article class="rf-card"><span class="rf-card-kicker">05</span><h3 class="rf-h3">Documents</h3><p>Referral letter, Mental Health Treatment Plan, reports or assessment documents where available.</p></article>
+        <article class="rf-card"><span class="rf-card-kicker">06</span><h3 class="rf-h3">Preferences</h3><p>Clinician, appointment mode, language, gender or scheduling needs if clinically relevant.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="rf-section">
+    <div class="rf-container">
+      <div class="rf-eyebrow">Referral pathway</div>
+      <h2 class="rf-h2">Review, matching and next steps.</h2>
+      <div class="rf-grid-4">
+        <article class="rf-card"><span class="rf-card-kicker">01</span><h3 class="rf-h3">Submit referral</h3><p>Submit via HealthLink, online form, email, phone or fax.</p></article>
+        <article class="rf-card"><span class="rf-card-kicker">02</span><h3 class="rf-h3">Intake review</h3><p>Referral reason, urgency, risk, funding and documents are reviewed.</p></article>
+        <article class="rf-card"><span class="rf-card-kicker">03</span><h3 class="rf-h3">Clinician matching</h3><p>Matching considers presentation, complexity, age, comorbidities and clinician expertise.</p></article>
+        <article class="rf-card"><span class="rf-card-kicker">04</span><h3 class="rf-h3">Appointment and feedback</h3><p>Updates to the treating team are provided where clinically appropriate and with client consent.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="rf-section is-white">
+    <div class="rf-container rf-guide">
+      <div>
+        <div class="rf-eyebrow">Referrer guide</div>
+        <h2 class="rf-h2">IHL Clinical Referrer Guide.</h2>
+        <p class="rf-copy">Practice details, referral pathways, clinical scope, team overview and intake contacts.</p>
+        <div class="rf-actions">
+          <a class="rf-button is-primary" href="REFERRER_GUIDE_URL" target="_blank" rel="noopener">Download guide</a>
+          <a class="rf-button" href="#gp_referral_form">Open online form</a>
+        </div>
+      </div>
+      <div class="rf-card">
+        <span class="rf-card-kicker">Guide contents</span>
+        <ul class="rf-guide-list">
+          <li>Practice overview and referral pathway.</li>
+          <li>HealthLink EDI and intake contact details.</li>
+          <li>Presentations, approaches and funding pathways.</li>
+          <li>Clinical team overview.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="rf-section is-white">
+    <div class="rf-container rf-support">
+      <div>
+        <h2 class="rf-h3">Intake support</h2>
+        <p class="rf-small">Monday to Friday, 9:00 am to 5:00 pm.</p>
+      </div>
+      <div class="rf-actions">
+        <a class="rf-button" href="mailto:intake@institute4healthyliving.com">intake@institute4healthyliving.com</a>
+        <a class="rf-button" href="tel:+61289370667">02 8937 0667</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+  (function () {
+    var buttons = document.querySelectorAll("[data-rf-copy]");
+    buttons.forEach(function (button) {
+      button.addEventListener("click", function () {
+        var text = button.getAttribute("data-rf-copy");
+        if (!text || !navigator.clipboard) return;
+        navigator.clipboard.writeText(text).then(function () {
+          var previous = button.textContent;
+          button.textContent = "Copied";
+          window.setTimeout(function () {
+            button.textContent = previous;
+          }, 1400);
+        });
+      });
+    });
+  })();
+</script>
