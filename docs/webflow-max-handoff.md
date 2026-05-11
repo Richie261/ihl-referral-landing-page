@@ -62,6 +62,14 @@ Suggested supporting copy:
 
 `Search for Institute for Healthy Living or use EDI inshealh from compatible clinical software.`
 
+HealthLink lookup note:
+
+Add a small external link labelled `Open HealthLink lookup` to the HealthLink Provider Map:
+
+`https://www.healthlink.com.au/healthlink-provider-map/`
+
+Research on 2026-05-11 found the public map confirms IHL appears as `Institute For healthy Living` with EDI `inshealh`, but no clean provider-specific public profile link was found. Keep the EDI code visible; do not replace it with a link-only pathway.
+
 ## Public Webflow Content Rules
 
 Do not include:

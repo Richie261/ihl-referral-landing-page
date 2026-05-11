@@ -37,3 +37,17 @@ Purpose: keep a concise record of why the referrer landing page was simplified a
 - CAPTCHA or equivalent human verification should be included in the live form and validated server-side.
 - CAPTCHA confirms likely human interaction; it does not confirm that the referrer is who they say they are.
 - Referrer identity should be supported through professional email, practice details, provider identifiers where available, uploaded documents/letterhead and IHL's permission to verify details before progressing intake.
+
+## HealthLink EDI Lookup
+
+- Official HealthLink pages provide a public Provider Map and a HealthLink Online Directory for subscribers.
+- The Provider Map is location-search based. It confirms IHL appears as "Institute For healthy Living" with EDI `inshealh`, but it does not expose a clean, stable provider-specific public profile URL.
+- The Online Directory requires a HealthLink login and is intended for HealthLink users to find messaging addresses.
+- Page decision: include a simple "Open HealthLink lookup" link to the public Provider Map, but keep `EDI: inshealh` visible and copyable. The link supports discovery; the EDI remains the reliable referral detail.
+
+Sources checked:
+
+- https://www.healthlink.com.au/healthlink-provider-map/
+- https://www.healthlink.com.au/products/healthlink-provider-directory/
+- https://aupd.healthlink.net/login.php
+- https://aupd.healthlink.net/hlkwebmap/

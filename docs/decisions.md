@@ -14,6 +14,7 @@
 - The page should feel like a calm professional referral reference, not a sales funnel or guided tour.
 - Avoid numbered process cards and heavy explanatory blocks unless they are required for clinical safety or form completion.
 - HealthLink EDI `inshealh` must remain easy to find and copy.
+- Add a light HealthLink lookup link to the public Provider Map, but keep the EDI code as the primary reliable detail because no clean provider-specific public HealthLink profile URL has been confirmed.
 - The online form, intake email, phone and fax should be presented as available referral options.
 - HubSpot should be treated as referrer/campaign CRM only unless a separate data policy approves otherwise.
 - Clinical referral details should not be placed into marketing systems by default.
