@@ -423,7 +423,7 @@
         <div>
           <p class="rf-eyebrow">Referral form</p>
           <h1 class="rf-h1">Refer a patient to IHL.</h1>
-          <p class="rf-copy">A clean referral pathway for health professionals. Start with the patient details intake needs to call, email or text, then add the referral basis, supporting documents and referrer authority.</p>
+          <p class="rf-copy">A simple, secure gateway for health professionals to send a referral and help IHL begin intake with care.</p>
           <div class="rf-actions">
             <a class="rf-button is-primary" href="#rf-referral-form">Start referral</a>
             <a class="rf-button is-subtle" href="REFERRER_GUIDE_URL" target="_blank" rel="noopener">Referrer guide</a>
@@ -432,8 +432,8 @@
 
         <aside class="rf-card" aria-label="Other referral options">
           <div class="rf-card-head">
-            <p class="rf-eyebrow">Other ways to refer</p>
-            <strong>Use the channel that already fits your workflow.</strong>
+            <p class="rf-eyebrow">Other referral routes</p>
+            <strong>Use whichever channel suits your practice.</strong>
           </div>
           <div class="rf-card-body">
             <div class="rf-detail"><span>HealthLink</span><strong>Institute for Healthy Living<br>EDI: inshealh</strong></div>
@@ -445,20 +445,20 @@
 
       <div class="rf-form-intro">
         <div>
-          <p class="rf-eyebrow">Secure online referral</p>
-          <h2 class="rf-h2">Minimum friction, enough clinical context.</h2>
-          <p class="rf-copy">If a signed referral letter, specialist referral, or supporting Mental Health Treatment Plan is uploaded, this form should not make the referrer re-type the full document. If the form itself is the referral, the declaration and referral fields capture the essentials needed for intake and Medicare-supported pathways.</p>
+          <p class="rf-eyebrow">Secure referral gateway</p>
+          <h2 class="rf-h2">Simple enough to complete, clear enough for intake.</h2>
+          <p class="rf-copy">Keep the referral short and useful. Upload the letter, specialist referral, Mental Health Treatment Plan or other supporting document if it already exists; the form captures the essentials IHL needs to begin intake.</p>
         </div>
         <div class="rf-principles">
-          <div class="rf-principle"><strong>Patient contact first</strong><span>Mobile, email and preferred contact method are treated as core intake fields.</span></div>
-          <div class="rf-principle"><strong>Documents do the heavy lifting</strong><span>Referrers can upload referral letters, MHTPs, plans or reports instead of duplicating content.</span></div>
-          <div class="rf-principle"><strong>Referrer authority last</strong><span>Provider details, date and electronic declaration support a valid referral record.</span></div>
+          <div class="rf-principle"><strong>Contact details first</strong><span>Mobile, email and preferred contact method sit at the front of the referral.</span></div>
+          <div class="rf-principle"><strong>Upload what exists</strong><span>Referral letters, MHTPs, plans and reports can carry the detailed context.</span></div>
+          <div class="rf-principle"><strong>Referrer details kept light</strong><span>Only the details needed to identify, contact and confirm the referrer.</span></div>
         </div>
       </div>
 
       <form class="rf-form" id="rf-referral-form" action="SECURE_FORM_ENDPOINT" method="post" enctype="multipart/form-data">
         <section class="rf-form-section">
-          <div class="rf-section-side"><h3 class="rf-h3">Patient contact</h3><p>Core details for intake to contact the patient, guardian or referrer quickly and safely.</p></div>
+          <div class="rf-section-side"><h3 class="rf-h3">Patient contact</h3><p>Core details for intake to call, email or text the patient, guardian or referrer.</p></div>
           <div class="rf-section-body">
             <div class="rf-field-grid">
               <div class="rf-field"><label>Patient full name *</label><input name="patient_name" autocomplete="name" required></div>
@@ -474,7 +474,7 @@
         </section>
 
         <section class="rf-form-section">
-          <div class="rf-section-side"><h3 class="rf-h3">Referral basis</h3><p>Enough information for intake to understand clinical fit, urgency and funding pathway.</p></div>
+          <div class="rf-section-side"><h3 class="rf-h3">Referral basis</h3><p>A brief clinical context, with room for documents to provide the detail.</p></div>
           <div class="rf-section-body">
             <div class="rf-field-grid">
               <div class="rf-field"><label>Referral pathway *</label><select name="referral_type" required><option value="">Select one</option><option>GP Mental Health Treatment Plan</option><option>Psychiatrist referral</option><option>Paediatrician referral</option><option>Private or self-funded</option><option>NDIS</option><option>WorkCover or SIRA</option><option>DVA or insurance</option><option>Corporate or EAP</option><option>Unsure or other</option></select></div>
@@ -489,7 +489,7 @@
         </section>
 
         <section class="rf-form-section">
-          <div class="rf-section-side"><h3 class="rf-h3">Upload files</h3><p>Attach the document that already exists, rather than rebuilding it inside the form.</p></div>
+          <div class="rf-section-side"><h3 class="rf-h3">Upload files</h3><p>Send the document that already exists, rather than rebuilding it inside the form.</p></div>
           <div class="rf-section-body">
             <div class="rf-field-grid">
               <div class="rf-field is-full"><label>Referral documents <small>optional but encouraged</small></label><input name="attachments" type="file" multiple accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.heic"><p class="rf-helper">Referral letter, MHTP, psychiatrist or paediatrician letter, Medicare plan, insurer/workplace document, reports or assessments.</p></div>
@@ -499,7 +499,7 @@
         </section>
 
         <section class="rf-form-section">
-          <div class="rf-section-side"><h3 class="rf-h3">Referrer details</h3><p>Minimum details needed to identify and contact the referrer, with provider fields available where funding requires them.</p></div>
+          <div class="rf-section-side"><h3 class="rf-h3">Referrer details</h3><p>Enough to identify and contact the referrer, with provider fields available where funding requires them.</p></div>
           <div class="rf-section-body">
             <div class="rf-field-grid">
               <div class="rf-field"><label>Referrer full name *</label><input name="referrer_name" autocomplete="name" required></div>
@@ -526,7 +526,7 @@
         </div>
       </form>
 
-      <p class="rf-fine-print">Medicare-supported referrals may require a written, signed and dated referral with patient details, symptoms or diagnosis, medications where relevant, services requested and plan status. Uploading the source referral and any supporting plan is the cleanest way to preserve this without adding friction.</p>
+      <p class="rf-fine-print">Medicare-supported referrals may require a written, signed and dated referral with patient details, symptoms or diagnosis, medications where relevant, services requested and plan status. Uploading the source referral and any supporting plan preserves this without asking the referrer to duplicate the document.</p>
     </div>
   </section>
 </div>

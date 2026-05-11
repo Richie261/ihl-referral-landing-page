@@ -181,4 +181,4 @@ Official Webflow references checked on 2026-05-07:
 
 ## Message To Max
 
-Max, the page is now form-first. Use `/referrals` as canonical unless there is a live-site reason not to, and add `/refer` as a campaign-friendly redirect. Please keep the top of page quiet and brief, then place the online referral form directly on the page. The form should ask patient contact details first, then referral basis, file uploads and referrer authority. Route full clinical referral data and attachments to the approved secure intake workflow, and only pass referrer/campaign metadata to HubSpot.
+Max, the page is now a simple, professional and warm referral gateway. Use `/referrals` as canonical unless there is a live-site reason not to, and add `/refer` as a campaign-friendly redirect. Please keep the top of page quiet and brief, then place the online referral form directly on the page. The form should ask patient contact details first, then referral basis, file uploads and referrer details. Route full clinical referral data and attachments to the approved secure intake workflow, and only pass referrer/campaign metadata to HubSpot.
