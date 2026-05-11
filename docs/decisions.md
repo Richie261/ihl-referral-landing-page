@@ -10,6 +10,7 @@
 - Referrer details should stay minimal but sufficient to identify the referrer, contact them, and support referral validity where the online form itself is used as the referral.
 - Security must be explicit: clinical details and uploaded documents route only through the approved secure intake pathway in the live build.
 - Trustworthiness should be conveyed through clear intake ownership, privacy boundaries, restrained copy and separation of patient information from campaign metadata.
+- The final form needs bot protection and referrer verification. CAPTCHA confirms human interaction only; referrer identity should be supported by professional email, provider details, uploaded referral documents/letterhead and permission for IHL to verify details before progressing intake.
 - The page should feel like a calm professional referral reference, not a sales funnel or guided tour.
 - Avoid numbered process cards and heavy explanatory blocks unless they are required for clinical safety or form completion.
 - HealthLink EDI `inshealh` must remain easy to find and copy.

@@ -31,3 +31,9 @@ Purpose: keep a concise record of why the referrer landing page was simplified a
 - The weaker part is the long explanatory process section and a heavy embedded form. IHL should avoid the explanatory middle and invest in the form itself.
 - IHL direction after this review: a short doorway, compact referral options, then the form on the same page.
 - Form principle: patient contact details first, uploadable source documents second, referrer authority last.
+
+## Human and Referrer Verification
+
+- CAPTCHA or equivalent human verification should be included in the live form and validated server-side.
+- CAPTCHA confirms likely human interaction; it does not confirm that the referrer is who they say they are.
+- Referrer identity should be supported through professional email, practice details, provider identifiers where available, uploaded documents/letterhead and IHL's permission to verify details before progressing intake.

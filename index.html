@@ -467,6 +467,41 @@
         line-height: 1.45;
       }
 
+      .captcha-box {
+        display: flex;
+        gap: 14px;
+        align-items: center;
+        border: 1px solid var(--line-strong);
+        border-radius: 8px;
+        background: #fcfdfb;
+        padding: 16px;
+      }
+
+      .captcha-mark {
+        width: 28px;
+        height: 28px;
+        flex: 0 0 auto;
+        border: 2px solid var(--line-strong);
+        border-radius: 6px;
+        background: #fff;
+      }
+
+      .captcha-box strong,
+      .captcha-box span {
+        display: block;
+      }
+
+      .captcha-box strong {
+        font-size: 15px;
+      }
+
+      .captcha-box span {
+        margin-top: 4px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.4;
+      }
+
       .file-note {
         margin-top: 12px;
         border-left: 3px solid var(--green);
@@ -895,11 +930,39 @@
             </div>
           </section>
 
+          <section class="form-section" aria-labelledby="verification-heading">
+            <div class="section-side">
+              <h3 id="verification-heading">Human check</h3>
+              <p>Protection against automated spam, with clear referrer confirmation before the referral is accepted.</p>
+            </div>
+            <div class="section-body">
+              <div class="field-grid">
+                <div class="field full">
+                  <label>Human verification *</label>
+                  <div class="captcha-box" role="group" aria-label="CAPTCHA verification placeholder">
+                    <span class="captcha-mark" aria-hidden="true"></span>
+                    <div>
+                      <strong>CAPTCHA verification</strong>
+                      <span>Live build: use Turnstile, hCaptcha or reCAPTCHA with server-side token validation before submission is accepted.</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="field full">
+                  <div class="check-row">
+                    <input id="identity-confirmation" name="identity_confirmation" type="checkbox" required />
+                    <label for="identity-confirmation">I confirm this referral is submitted by the named referrer or by an authorised practice team member, and IHL may verify referrer details before progressing intake. *</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
           <input type="hidden" name="utm_source" data-attribution-input="utm_source" />
           <input type="hidden" name="utm_medium" data-attribution-input="utm_medium" />
           <input type="hidden" name="utm_campaign" data-attribution-input="utm_campaign" />
           <input type="hidden" name="landing_page" data-attribution-input="landing_page" />
           <input type="hidden" name="submitted_date" data-submitted-date />
+          <input type="hidden" name="captcha_token" data-captcha-token />
 
           <div class="form-footer">
             <p>

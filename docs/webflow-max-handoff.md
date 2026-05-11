@@ -51,7 +51,7 @@ Build the Webflow page in this order:
 1. Hero: "Refer a patient to IHL."
 2. Compact other-ways-to-refer panel with HealthLink EDI `inshealh`, intake email, phone and fax.
 3. Online referral form directly on the page.
-4. Form sections: patient contact, referral basis, upload files, referrer details.
+4. Form sections: patient contact, referral basis, upload files, referrer details, human/referrer verification.
 5. Footer strip with intake email, phone and HealthLink EDI.
 
 HealthLink must be visible in the first viewport:
@@ -152,6 +152,8 @@ Use simple Webflow sections rather than overbuilding:
 - Keep the form short by letting uploaded referral letters, MHTPs and specialist referrals carry the detailed clinical and Medicare content.
 - Make security visible but calm: clinical details and uploaded documents must route only through the approved secure intake pathway.
 - Make trust visible through intake ownership, privacy boundaries and clear separation between patient information and campaign/referrer metadata.
+- Add human verification and validate it server-side. CAPTCHA reduces automated spam but does not prove referrer identity.
+- Verify referrer identity through a combination of professional email, provider identifiers where available, uploaded referral documents/letterhead and an explicit authorisation declaration.
 - Prefer native Webflow sections if Max wants to maintain visually in Designer.
 - If speed matters, paste `webflow/referrals-landing-webflow-embed.html` into an Embed element and replace `SECURE_FORM_ENDPOINT`.
 - Replace `REFERRER_GUIDE_URL` with the uploaded Webflow asset URL for the referrer guide PDF.
@@ -176,6 +178,8 @@ Official Webflow references checked on 2026-05-07:
 - Add hidden attribution fields to the final form workflow.
 - Confirm intake notification destination.
 - Confirm attachment handling.
+- Confirm CAPTCHA/human verification provider and server-side token validation.
+- Confirm referrer verification workflow for suspicious or incomplete submissions.
 - Confirm HubSpot sync excludes all patient and clinical fields.
 - Add final PDF guide link only after the current guide is approved.
 - Test desktop and mobile.

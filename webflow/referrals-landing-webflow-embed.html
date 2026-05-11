@@ -337,6 +337,37 @@
     flex: 0 0 auto;
   }
 
+  .rf-captcha {
+    display: flex;
+    gap: .9rem;
+    align-items: center;
+    border: 1px solid var(--rf-border-strong);
+    border-radius: 8px;
+    background: #fcfdfb;
+    padding: 1rem;
+  }
+
+  .rf-captcha-mark {
+    width: 28px;
+    height: 28px;
+    flex: 0 0 auto;
+    border: 2px solid var(--rf-border-strong);
+    border-radius: 6px;
+    background: var(--rf-white);
+  }
+
+  .rf-captcha strong,
+  .rf-captcha span {
+    display: block;
+  }
+
+  .rf-captcha span {
+    margin-top: .25rem;
+    color: var(--rf-muted);
+    font-size: .9rem;
+    line-height: 1.4;
+  }
+
   .rf-info {
     margin-top: .9rem;
     border-left: 3px solid var(--rf-green);
@@ -525,11 +556,22 @@
           </div>
         </section>
 
+        <section class="rf-form-section">
+          <div class="rf-section-side"><h3 class="rf-h3">Human check</h3><p>Protection against automated spam, with clear referrer confirmation before the referral is accepted.</p></div>
+          <div class="rf-section-body">
+            <div class="rf-field-grid">
+              <div class="rf-field is-full"><label>Human verification *</label><div class="rf-captcha" role="group" aria-label="CAPTCHA verification placeholder"><span class="rf-captcha-mark" aria-hidden="true"></span><div><strong>CAPTCHA verification</strong><span>Live build: use Turnstile, hCaptcha or reCAPTCHA with server-side token validation before submission is accepted.</span></div></div></div>
+              <div class="rf-field is-full"><div class="rf-check"><input id="rf-identity-confirmation" name="identity_confirmation" type="checkbox" required><label for="rf-identity-confirmation">I confirm this referral is submitted by the named referrer or by an authorised practice team member, and IHL may verify referrer details before progressing intake. *</label></div></div>
+            </div>
+          </div>
+        </section>
+
         <input type="hidden" name="utm_source">
         <input type="hidden" name="utm_medium">
         <input type="hidden" name="utm_campaign">
         <input type="hidden" name="landing_page">
         <input type="hidden" name="submitted_date">
+        <input type="hidden" name="captcha_token">
 
         <div class="rf-form-footer">
           <p>Live submissions require approved secure form handling, file storage, intake notifications and privacy controls before real patient information is accepted.</p>
