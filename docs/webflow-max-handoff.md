@@ -150,6 +150,7 @@ Use simple Webflow sections rather than overbuilding:
 - Keep HealthLink and intake contact details easy to copy.
 - Keep the page quiet and operational: more professional reference than marketing brochure.
 - Keep the form short by letting uploaded referral letters, MHTPs and specialist referrals carry the detailed clinical and Medicare content.
+- Make security visible but calm: clinical details and uploaded documents must route only through the approved secure intake pathway.
 - Prefer native Webflow sections if Max wants to maintain visually in Designer.
 - If speed matters, paste `webflow/referrals-landing-webflow-embed.html` into an Embed element and replace `SECURE_FORM_ENDPOINT`.
 - Replace `REFERRER_GUIDE_URL` with the uploaded Webflow asset URL for the referrer guide PDF.
